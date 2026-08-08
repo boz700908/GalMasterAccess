@@ -28,7 +28,8 @@ foreach ($directory in $directories) {
 
 $rootFiles = @(
     "byctrl-x64.dll", "byctrl.conf", "GameConsoleMode", "nvdaControllerClient64.dll",
-    "SAAPI64.dll", "Tolk.dll", "Tolk.exp", "Tolk.lib", "ZDSRAPI_x64.dll", "ZDSRAPI.ini"
+    "SAAPI64.dll", "Tolk.dll", "Tolk.exp", "Tolk.lib", "ZDSRAPI_x64.dll", "ZDSRAPI.ini",
+    "version.dll"
 )
 foreach ($file in $rootFiles) {
     $source = Join-Path $GamePath $file
