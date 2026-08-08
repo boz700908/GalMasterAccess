@@ -1,0 +1,113 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- WICHTIG: TargetFramework aus MelonLoader-Log bestimmen!
+         Runtime Type: net35 → net472 (NICHT netstandard2.0!)
+         Runtime Type: net6  → net6.0 -->
+    <TargetFramework>net472</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <LangVersion>latest</LangVersion>
+
+    <AssemblyName>GalMasterAccess</AssemblyName>
+    <RootNamespace>GalMasterAccess</RootNamespace>
+  </PropertyGroup>
+
+  <!-- WICHTIG: Dekompilierte Dateien vom Build ausschließen! -->
+  <ItemGroup>
+    <Compile Remove="decompiled\**" />
+    <Compile Remove="templates\**" />
+  </ItemGroup>
+
+  <!-- MelonLoader Referenzen
+       WICHTIG: Ordner muss zu Runtime Type passen (net35/ oder net6/) -->
+  <ItemGroup>
+    <Reference Include="MelonLoader">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\GalMaster\MelonLoader\net35\MelonLoader.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\GalMaster\MelonLoader\net35\0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <!-- Unity Referenzen (aus dem Spiel-Managed-Ordner) -->
+  <ItemGroup>
+    <Reference Include="UnityEngine">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\GalMaster\GAL PRO MASTER_Data\Managed\UnityEngine.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\GalMaster\GAL PRO MASTER_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\GalMaster\GAL PRO MASTER_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\GalMaster\GAL PRO MASTER_Data\Managed\UnityEngine.UI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\GalMaster\GAL PRO MASTER_Data\Managed\UnityEngine.UIModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\GalMaster\GAL PRO MASTER_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\GalMaster\GAL PRO MASTER_Data\Managed\Unity.TextMeshPro.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <!-- Spiel-Assembly -->
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\GalMaster\GAL PRO MASTER_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <!-- Nach Build: DLL in Mods-Ordner kopieren -->
+  <Target Name="CopyToMods" AfterTargets="Build">
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="C:\Program Files (x86)\Steam\steamapps\common\GalMaster\Mods\" />
+    <Message Text="Copied $(TargetFileName) to Mods folder" Importance="High" />
+  </Target>
+
+</Project>
+
+<!--
+ANLEITUNG - Platzhalter ersetzen:
+
+1. Target framework:
+   - Prüfe MelonLoader-Log für "Runtime Type:"
+   - net35 → ersetze mit: net472 (NICHT netstandard2.0!)
+   - net6  → ersetze mit: net6.0
+
+   ACHTUNG: netstandard2.0 funktioniert NICHT für Mono/net35-Spiele!
+   Der Mod wird geladen aber nicht initialisiert (keine Fehlermeldung).
+
+2. Runtime folder:
+   - net35 → ersetze mit: net35
+   - net6  → ersetze mit: net6
+
+3. Game folder: Der volle Pfad zum Spiel, z.B.:
+   C:\Program Files (x86)\Steam\steamapps\common\Spielname
+
+4. Spielname: Name des Spiels (für den _Data Ordner), z.B.:
+   Pet Idle → Pet Idle_Data
+
+5. MODNAME und NAMESPACE: Dein Mod-Name, z.B.:
+   PetIdleAccessibility
+
+CHECKLISTE VOR BUILD:
+[ ] TargetFramework passt zu Runtime Type aus Log
+[ ] Runtime folder matches the loader runtime
+[ ] Alle Pfade geprüft
+[ ] Alle Assembly-Namen geprüft
+[ ] decompiled und templates werden ausgeschlossen
+-->

@@ -1,0 +1,89 @@
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\MainData_SO.cs:7:	public List<MainData> MainDataList = new List<MainData>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\CGGalleryPool.cs:11:	public List<CGGalleryItem> Images = new List<CGGalleryItem>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\CGGalleryPool.cs:17:	public List<Image> ImagePool = new List<Image>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\AuidoData_SO.cs:7:	public List<AudioData> SFXList = new List<AudioData>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\AuidoData_SO.cs:9:	public List<AudioData> BGMList = new List<AudioData>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\AuidoData_SO.cs:11:	public List<AudioClip> ImportSFXClips = new List<AudioClip>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\AuidoData_SO.cs:13:	public List<AudioClip> ImportBGMClips = new List<AudioClip>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\MainData.cs:35:	public List<string> dialogueSelectOptions = new List<string>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\MainData.cs:37:	public List<EffectInterAction> effectInterActions = new List<EffectInterAction>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\CGUnit.cs:8:public class CGUnit : MonoBehaviour, IPointerClickHandler, IEventSystemHandler, IPointerEnterHandler, IPointerExitHandler
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\CGAction.cs:10:public class CGAction : MonoBehaviour
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\CGAction.cs:68:	public List<Button> galleryListButtons = new List<Button>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\CGAction.cs:84:	public List<Image> imagePool = new List<Image>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\CGAction.cs:128:	public List<CGGalleryPool> galleryPools = new List<CGGalleryPool>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\CGAction.cs:220:	public List<CGGalleryPool> formalCgGroups = new List<CGGalleryPool>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\CGAction.cs:229:	public readonly List<CGUnit> _formalCgUnits = new List<CGUnit>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\CGAction.cs:232:	public readonly List<RectTransform> _formalProgressUnits = new List<RectTransform>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\GloalSaveData.cs:7:	public List<string> unlockedCGKeys = new List<string>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\GloalSaveData.cs:9:	public List<string> unlockedBGMKeys = new List<string>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\GloalSaveData.cs:11:	public List<string> unlockedAchievementKeys = new List<string>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\GloalSaveData.cs:13:	public List<int> globalDialogueRecord = new List<int>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\UISfxTrigger.cs:18:	public static GameObject _lastAutoPointerEnteredObject;
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\DialogueHandle.cs:13:public class DialogueHandle : Singleton<DialogueHandle>
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\DialogueHandle.cs:82:	public List<Image> mainImage_Pool = new List<Image>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\DialogueHandle.cs:243:	public readonly List<CanvasGroup> _dialogueHideCanvasGroups = new List<CanvasGroup>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\DialogueHandle.cs:312:	public List<PicAssets> picAssets = new List<PicAssets>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\DialogueHandle.cs:316:	public List<Image> _picAssetsInjectSource = new List<Image>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\DialogueHandle.cs:321:	public List<string> dialogueSelectOptions = new List<string>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\DialogueHandle.cs:323:	public List<EffectInterAction> exAction_EffectInterActions = new List<EffectInterAction>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\DialogueHandle.cs:568:	public readonly List<Image> _stageTransitionGhostImages = new List<Image>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\DialogueHandle.cs:796:	public void ToggleSkipMode()
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\DialogueHandle.cs:816:	public void ToggleAutoPlayMode()
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\DialogueHandle.cs:5531:	public bool TrySplitPptTransitionEffects(List<EffectInterAction> effects, out EffectInterAction pptEffect, out List<EffectInterAction> preSnapshotEffects, out List<EffectInterAction> postSnapshotEffects)
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\DialogueHandle.cs:5660:	public IEnumerator ExPptTransitionWithPostSnapshotEffects(EffectInterAction effect, List<EffectInterAction> postSnapshotEffects)
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\DialogueHandle.cs:7350:	public void CreateStageTransitionGhost(Image source, List<Image> transitionGhosts)
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\PicData_SO.cs:7:	public List<PicData> PicDataList = new List<PicData>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\PicData_SO.cs:9:	public List<Sprite> SpritesToAdd = new List<Sprite>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\SaveLoadSlot.cs:7:public class SaveLoadSlot : MonoBehaviour
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\HistoryAction.cs:9:public class HistoryAction : MonoBehaviour, IScrollHandler, IEventSystemHandler
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\HistoryAction.cs:79:	public readonly List<int> _dataIndices = new List<int>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\HistoryAction.cs:82:	public readonly List<Image> _bkRevealImages = new List<Image>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\HistoryAction.cs:85:	public readonly List<Material> _bkOriginalMaterials = new List<Material>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\HistoryAction.cs:88:	public readonly List<Material> _bkRevealMaterials = new List<Material>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\HistoryAction.cs:91:	public readonly List<Material> _bkRuntimeRevealMaterials = new List<Material>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\HistoryAction.cs:94:	public readonly List<CanvasGroup> _fadeCanvasGroups = new List<CanvasGroup>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\HistoryObj.cs:7:public class HistoryObj : MonoBehaviour
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\MenuButton.cs:6:public class MenuButton : MonoBehaviour, IPointerEnterHandler, IEventSystemHandler, IPointerDownHandler
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\QLSlot.cs:8:public class QLSlot : MonoBehaviour, IPointerEnterHandler, IEventSystemHandler, IPointerExitHandler, IPointerClickHandler
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\MenuAction.cs:7:public class MenuAction : MonoBehaviour
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\MenuAction.cs:71:	public readonly List<Vector2> _characterTargetPositions = new List<Vector2>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\MenuAction.cs:74:	public readonly List<Color> _characterTargetColors = new List<Color>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\MenuAction.cs:77:	public readonly List<Image> _menuVisualImages = new List<Image>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\MenuAction.cs:80:	public readonly List<Sprite> _menuVisualSprites = new List<Sprite>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\MenuAction.cs:83:	public readonly List<Sprite> _menuVisualOverrideSprites = new List<Sprite>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\SaveLoadData.cs:17:	public List<MainImageSaveState> mainImageStates = new List<MainImageSaveState>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\SaveLoadData.cs:19:	public List<MainImageSaveState> ambientImageStates = new List<MainImageSaveState>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\SaveLoadData.cs:21:	public List<int> backlogHisHistory = new List<int>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\SaveLoadData.cs:23:	public List<int> ExRecordList = new List<int>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\SaveLoadData.cs:25:	public List<string> selectedOptionKeys = new List<string>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\ConfirmTipAction.cs:9:public class ConfirmTipAction : MonoBehaviour
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\Character_SO.cs:7:	public List<CharacterData> CharacterDataList = new List<CharacterData>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\CharacterTalkData.cs:10:	public List<AudioClip> talkDatas = new List<AudioClip>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\SettingButton.cs:6:public class SettingButton : MonoBehaviour, IPointerClickHandler, IEventSystemHandler, IPointerEnterHandler, IPointerExitHandler
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\SettingButton.cs:10:	public Image ButtonImage;
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\SettingButton.cs:129:	public void ToggleCharacterVoiceMute(GameSettings settings, CharacterCode characterCode)
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\SaveloadAction.cs:11:public class SaveloadAction : MonoBehaviour
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\SaveloadAction.cs:100:	public readonly List<Image> _bkRevealImages = new List<Image>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\SaveloadAction.cs:103:	public readonly List<Material> _bkOriginalMaterials = new List<Material>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\SaveloadAction.cs:106:	public readonly List<Material> _bkRevealMaterials = new List<Material>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\SaveloadAction.cs:109:	public readonly List<Material> _bkRuntimeRevealMaterials = new List<Material>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\SaveloadAction.cs:112:	public readonly List<CanvasGroup> _fadeCanvasGroups = new List<CanvasGroup>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\UIHanderCenter.cs:9:public class UIHanderCenter : Singleton<UIHanderCenter>
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\CharacterData.cs:16:	public List<CharacterFace> characterFaces = new List<CharacterFace>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\CharacterData.cs:18:	public List<CharacterVoice> characterVoices = new List<CharacterVoice>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\CharacterData.cs:20:	public List<Characters> characters = new List<Characters>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\CharacterData.cs:22:	public List<Sprite> batchFaceSprites = new List<Sprite>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\CharacterData.cs:24:	public List<AudioClip> batchVoiceClips = new List<AudioClip>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\CharacterData.cs:26:	public List<Sprite> batchCharacterSprites = new List<Sprite>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\SelectionAction.cs:7:public class SelectionAction : MonoBehaviour
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\SelectionAction.cs:15:	public Button[] optionButtons = new Button[5];
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\StaffAction.cs:6:public class StaffAction : MonoBehaviour
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\SettingAction.cs:12:public class SettingAction : MonoBehaviour
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\SettingAction.cs:26:	public List<Button> Buttons;
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\SettingAction.cs:28:	public List<Slider> Sliders;
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\SettingAction.cs:115:	public readonly List<Image> _bkRevealImages = new List<Image>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\SettingAction.cs:118:	public readonly List<Material> _bkOriginalMaterials = new List<Material>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\SettingAction.cs:121:	public readonly List<Material> _bkRevealMaterials = new List<Material>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\SettingAction.cs:124:	public readonly List<Material> _bkRuntimeRevealMaterials = new List<Material>();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Assembly-CSharp\SettingAction.cs:127:	public readonly List<CanvasGroup> _fadeCanvasGroups = new List<CanvasGroup>();

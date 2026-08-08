@@ -1,0 +1,1079 @@
+decompiled\CGAction.cs:32:	private const string FormalGalleryScrollbarName = "FormalGalleryHorizontalScrollbar";
+decompiled\CGAction.cs:38:	private const float FormalGalleryScrollbarTrackThickness = 4f;
+decompiled\CGAction.cs:40:	private const float FormalGalleryScrollbarHandleHeight = 12f;
+decompiled\CGAction.cs:42:	private const float FormalGalleryScrollbarHorizontalPadding = 6f;
+decompiled\CGAction.cs:68:	private List<Button> galleryListButtons = new List<Button>();
+decompiled\CGAction.cs:75:	private ScrollRect galleryScrollRect;
+decompiled\CGAction.cs:121:	private Button closeButton;
+decompiled\CGAction.cs:177:	private Scrollbar formalGalleryScrollbar;
+decompiled\CGAction.cs:180:	private Vector2 formalGalleryScrollbarSize = new Vector2(560f, 24f);
+decompiled\CGAction.cs:183:	private float formalGalleryScrollbarTopOffset = 44f;
+decompiled\CGAction.cs:186:	private Color formalGalleryScrollbarTrackColor = new Color(1f, 1f, 1f, 0.18f);
+decompiled\CGAction.cs:189:	private Color formalGalleryScrollbarHandleColor = new Color(1f, 1f, 1f, 0.72f);
+decompiled\CGAction.cs:246:	private bool _syncingFormalGalleryScrollbar;
+decompiled\CGAction.cs:272:		BindGalleryListButtons();
+decompiled\CGAction.cs:273:		BindCloseButton();
+decompiled\CGAction.cs:298:			if (!_formalViewing && ((closeOnEscape && Input.GetKeyDown(KeyCode.Escape)) || Input.GetMouseButtonDown(1)))
+decompiled\CGAction.cs:303:		else if (closeOnEscape && Input.GetKeyDown(KeyCode.Escape))
+decompiled\CGAction.cs:348:		EnsureFormalGalleryScrollbar();
+decompiled\CGAction.cs:382:		if (formalGalleryScrollbar == null)
+decompiled\CGAction.cs:384:			Transform transform3 = FindChildRecursive(base.transform, "FormalGalleryHorizontalScrollbar");
+decompiled\CGAction.cs:387:				formalGalleryScrollbar = transform3.GetComponent<Scrollbar>();
+decompiled\CGAction.cs:392:	private void EnsureFormalGalleryScrollbar()
+decompiled\CGAction.cs:403:		RectTransform rectTransform = ((formalGalleryScrollbar != null) ? (formalGalleryScrollbar.transform as RectTransform) : null);
+decompiled\CGAction.cs:407:			rectTransform = GetOrCreateFormalScrollbarRect(parent, "FormalGalleryHorizontalScrollbar", parent.gameObject.layer);
+decompiled\CGAction.cs:412:			formalGalleryScrollbar = rectTransform.GetComponent<Scrollbar>();
+decompiled\CGAction.cs:413:			if (formalGalleryScrollbar == null)
+decompiled\CGAction.cs:415:				formalGalleryScrollbar = rectTransform.gameObject.AddComponent<Scrollbar>();
+decompiled\CGAction.cs:425:			ConfigureGeneratedFormalGalleryScrollbar(rectTransform, parent.gameObject.layer);
+decompiled\CGAction.cs:427:		formalGalleryScrollbar.onValueChanged.RemoveListener(HandleFormalGalleryScrollbarChanged);
+decompiled\CGAction.cs:428:		formalGalleryScrollbar.onValueChanged.AddListener(HandleFormalGalleryScrollbarChanged);
+decompiled\CGAction.cs:439:		RefreshFormalGalleryScrollbar();
+decompiled\CGAction.cs:442:	private void ConfigureGeneratedFormalGalleryScrollbar(RectTransform scrollbarRect, int uiLayer)
+decompiled\CGAction.cs:444:		Vector2 sizeDelta = new Vector2(Mathf.Max(120f, formalGalleryScrollbarSize.x), Mathf.Max(12f, formalGalleryScrollbarSize.y));
+decompiled\CGAction.cs:448:		scrollbarRect.anchoredPosition = new Vector2(0f, 0f - Mathf.Max(0f, formalGalleryScrollbarTopOffset));
+decompiled\CGAction.cs:460:		RectTransform orCreateFormalScrollbarRect = GetOrCreateFormalScrollbarRect(scrollbarRect, "Track", uiLayer);
+decompiled\CGAction.cs:461:		orCreateFormalScrollbarRect.anchorMin = new Vector2(0f, 0.5f);
+decompiled\CGAction.cs:462:		orCreateFormalScrollbarRect.anchorMax = new Vector2(1f, 0.5f);
+decompiled\CGAction.cs:463:		orCreateFormalScrollbarRect.pivot = new Vector2(0.5f, 0.5f);
+decompiled\CGAction.cs:464:		orCreateFormalScrollbarRect.anchoredPosition = Vector2.zero;
+decompiled\CGAction.cs:465:		orCreateFormalScrollbarRect.sizeDelta = new Vector2(0f, 4f);
+decompiled\CGAction.cs:466:		orCreateFormalScrollbarRect.localRotation = Quaternion.identity;
+decompiled\CGAction.cs:467:		orCreateFormalScrollbarRect.localScale = Vector3.one;
+decompiled\CGAction.cs:468:		Image image2 = orCreateFormalScrollbarRect.GetComponent<Image>();
+decompiled\CGAction.cs:471:			image2 = orCreateFormalScrollbarRect.gameObject.AddComponent<Image>();
+decompiled\CGAction.cs:474:		image2.color = formalGalleryScrollbarTrackColor;
+decompiled\CGAction.cs:476:		orCreateFormalScrollbarRect.SetAsFirstSibling();
+decompiled\CGAction.cs:477:		RectTransform orCreateFormalScrollbarRect2 = GetOrCreateFormalScrollbarRect(scrollbarRect, "Sliding Area", uiLayer);
+decompiled\CGAction.cs:478:		orCreateFormalScrollbarRect2.anchorMin = Vector2.zero;
+decompiled\CGAction.cs:479:		orCreateFormalScrollbarRect2.anchorMax = Vector2.one;
+decompiled\CGAction.cs:480:		orCreateFormalScrollbarRect2.pivot = new Vector2(0.5f, 0.5f);
+decompiled\CGAction.cs:481:		orCreateFormalScrollbarRect2.offsetMin = new Vector2(6f, 0f);
+decompiled\CGAction.cs:482:		orCreateFormalScrollbarRect2.offsetMax = new Vector2(-6f, 0f);
+decompiled\CGAction.cs:483:		orCreateFormalScrollbarRect2.localRotation = Quaternion.identity;
+decompiled\CGAction.cs:484:		orCreateFormalScrollbarRect2.localScale = Vector3.one;
+decompiled\CGAction.cs:485:		orCreateFormalScrollbarRect2.SetAsLastSibling();
+decompiled\CGAction.cs:486:		RectTransform orCreateFormalScrollbarRect3 = GetOrCreateFormalScrollbarRect(orCreateFormalScrollbarRect2, "Handle", uiLayer);
+decompiled\CGAction.cs:487:		orCreateFormalScrollbarRect3.anchorMin = new Vector2(0f, 0.5f);
+decompiled\CGAction.cs:488:		orCreateFormalScrollbarRect3.anchorMax = new Vector2(1f, 0.5f);
+decompiled\CGAction.cs:489:		orCreateFormalScrollbarRect3.pivot = new Vector2(0.5f, 0.5f);
+decompiled\CGAction.cs:490:		orCreateFormalScrollbarRect3.anchoredPosition = Vector2.zero;
+decompiled\CGAction.cs:491:		orCreateFormalScrollbarRect3.sizeDelta = new Vector2(0f, 12f);
+decompiled\CGAction.cs:492:		orCreateFormalScrollbarRect3.localRotation = Quaternion.identity;
+decompiled\CGAction.cs:493:		orCreateFormalScrollbarRect3.localScale = Vector3.one;
+decompiled\CGAction.cs:494:		Image image3 = orCreateFormalScrollbarRect3.GetComponent<Image>();
+decompiled\CGAction.cs:497:			image3 = orCreateFormalScrollbarRect3.gameObject.AddComponent<Image>();
+decompiled\CGAction.cs:500:		image3.color = formalGalleryScrollbarHandleColor;
+decompiled\CGAction.cs:502:		formalGalleryScrollbar.handleRect = orCreateFormalScrollbarRect3;
+decompiled\CGAction.cs:503:		formalGalleryScrollbar.targetGraphic = image3;
+decompiled\CGAction.cs:504:		formalGalleryScrollbar.direction = Scrollbar.Direction.LeftToRight;
+decompiled\CGAction.cs:505:		formalGalleryScrollbar.numberOfSteps = 0;
+decompiled\CGAction.cs:506:		formalGalleryScrollbar.transition = Selectable.Transition.ColorTint;
+decompiled\CGAction.cs:507:		Navigation navigation = formalGalleryScrollbar.navigation;
+decompiled\CGAction.cs:508:		navigation.mode = Navigation.Mode.None;
+decompiled\CGAction.cs:509:		formalGalleryScrollbar.navigation = navigation;
+decompiled\CGAction.cs:510:		ColorBlock colors = formalGalleryScrollbar.colors;
+decompiled\CGAction.cs:518:		formalGalleryScrollbar.colors = colors;
+decompiled\CGAction.cs:521:	private static RectTransform GetOrCreateFormalScrollbarRect(Transform parent, string childName, int layer)
+decompiled\CGAction.cs:540:	private void RefreshFormalGalleryScrollbar()
+decompiled\CGAction.cs:542:		if (!(formalGalleryScrollbar == null) && !(formalCgsGroup == null))
+decompiled\CGAction.cs:548:			formalGalleryScrollbar.size = Mathf.Clamp(value, 0.12f, 1f);
+decompiled\CGAction.cs:549:			formalGalleryScrollbar.interactable = num > 0.01f && formalGalleryScrollbar.size < 0.999f;
+decompiled\CGAction.cs:550:			SyncFormalGalleryScrollbarValue();
+decompiled\CGAction.cs:554:	private void SyncFormalGalleryScrollbarValue()
+decompiled\CGAction.cs:556:		if (!(formalGalleryScrollbar == null) && !(formalCgsGroup == null))
+decompiled\CGAction.cs:561:			_syncingFormalGalleryScrollbar = true;
+decompiled\CGAction.cs:562:			formalGalleryScrollbar.SetValueWithoutNotify(valueWithoutNotify);
+decompiled\CGAction.cs:563:			_syncingFormalGalleryScrollbar = false;
+decompiled\CGAction.cs:567:	private void HandleFormalGalleryScrollbarChanged(float value)
+decompiled\CGAction.cs:569:		if (!_syncingFormalGalleryScrollbar && !(formalCgsGroup == null))
+decompiled\CGAction.cs:902:		else if (Input.GetMouseButtonDown(1) || (closeOnEscape && Input.GetKeyDown(KeyCode.Escape)))
+decompiled\CGAction.cs:917:			else if (Input.GetMouseButtonDown(0))
+decompiled\CGAction.cs:997:			SyncFormalGalleryScrollbarValue();
+decompiled\CGAction.cs:1233:		if (formalGalleryScrollbar != null)
+decompiled\CGAction.cs:1235:			formalGalleryScrollbar.gameObject.SetActive(visible);
+decompiled\CGAction.cs:1615:		RefreshGalleryListButtonState();
+decompiled\CGAction.cs:1860:	private void BindGalleryListButtons()
+decompiled\CGAction.cs:1862:		if (galleryListButtons == null)
+decompiled\CGAction.cs:1866:		for (int i = 0; i < galleryListButtons.Count; i++)
+decompiled\CGAction.cs:1868:			Button button = galleryListButtons[i];
+decompiled\CGAction.cs:1877:			SetButtonLabel(button, flag ? GetPoolName(poolIndex) : string.Empty);
+decompiled\CGAction.cs:1887:		RefreshGalleryListButtonState();
+decompiled\CGAction.cs:1890:	private void RefreshGalleryListButtonState()
+decompiled\CGAction.cs:1892:		if (galleryListButtons == null)
+decompiled\CGAction.cs:1896:		for (int i = 0; i < galleryListButtons.Count; i++)
+decompiled\CGAction.cs:1898:			Button button = galleryListButtons[i];
+decompiled\CGAction.cs:1906:	private void BindCloseButton()
+decompiled\CGAction.cs:1908:		if (!(closeButton == null))
+decompiled\CGAction.cs:1910:			closeButton.onClick.RemoveAllListeners();
+decompiled\CGAction.cs:1911:			closeButton.onClick.AddListener(UninitAction);
+decompiled\CGAction.cs:1912:			UISfxTrigger.Bind(closeButton);
+decompiled\CGAction.cs:1930:	private static void SetButtonLabel(Button button, string label)
+decompiled\CGAction.cs:1936:		TMP_Text componentInChildren = button.GetComponentInChildren<TMP_Text>(includeInactive: true);
+decompiled\CGAction.cs:1954:			if (galleryScrollRect != null)
+decompiled\CGAction.cs:1956:				galleryScrollRect.horizontal = false;
+decompiled\CGAction.cs:1957:				galleryScrollRect.vertical = true;
+decompiled\CGAction.cs:1958:				galleryScrollRect.content = imagePoolContent;
+decompiled\CGAction.cs:1959:				galleryScrollRect.inertia = false;
+decompiled\CGAction.cs:1960:				galleryScrollRect.scrollSensitivity = 93.75f;
+decompiled\CGAction.cs:2298:		if (!(galleryScrollRect == null))
+decompiled\CGAction.cs:2301:			galleryScrollRect.verticalNormalizedPosition = 1f;
+decompiled\CGAction.cs:2382:			TextMeshProUGUI cellSequenceLabel = GetCellSequenceLabel(cellImage, portraitMode);
+decompiled\CGAction.cs:2389:	private TextMeshProUGUI GetCellSequenceLabel(Image cellImage, bool portraitMode)
+decompiled\CGAction.cs:2407:		TextMeshProUGUI textMeshProUGUI = transform.GetComponent<TextMeshProUGUI>();
+decompiled\CGAction.cs:2410:			textMeshProUGUI = transform.gameObject.AddComponent<TextMeshProUGUI>();
+decompiled\CGAction.cs:2593:	private static Color GetCloseButtonFrameColor()
+decompiled\CGUnit.cs:51:		if (_canOpen && !(_owner == null) && (eventData == null || eventData.button == PointerEventData.InputButton.Left))
+decompiled\CursorClickSquareBurst.cs:54:		if (Input.GetMouseButtonDown(0))
+decompiled\ConfirmTipAction.cs:17:	private TextMeshProUGUI _loadTipText;
+decompiled\ConfirmTipAction.cs:19:	private Button _sureButton;
+decompiled\ConfirmTipAction.cs:21:	private Button _cancelButton;
+decompiled\ConfirmTipAction.cs:37:	private float _sureButtonVisibleAlpha = -1f;
+decompiled\ConfirmTipAction.cs:39:	private float _cancelButtonVisibleAlpha = -1f;
+decompiled\ConfirmTipAction.cs:59:		if (IsOpen && (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1)))
+decompiled\ConfirmTipAction.cs:61:			if (Input.GetMouseButtonDown(1))
+decompiled\ConfirmTipAction.cs:78:			_loadTipText = FindCloneComponent<TextMeshProUGUI>(sourceRoot, source.LoadTipTxt, cloneRoot);
+decompiled\ConfirmTipAction.cs:79:			_sureButton = FindCloneComponent<Button>(sourceRoot, source.SureBtn, cloneRoot);
+decompiled\ConfirmTipAction.cs:80:			_cancelButton = FindCloneComponent<Button>(sourceRoot, source.CancelBtn, cloneRoot);
+decompiled\ConfirmTipAction.cs:83:			_buttonFadeDuration = source.loadTipButtonFadeDuration;
+decompiled\ConfirmTipAction.cs:84:			UISfxTrigger.BindActiveSelectablesInChildren(_loadTip);
+decompiled\ConfirmTipAction.cs:109:		SetButtonCanvasGroup(_sureButton, 0f, interactable: false);
+decompiled\ConfirmTipAction.cs:110:		SetButtonCanvasGroup(_cancelButton, 0f, interactable: false);
+decompiled\ConfirmTipAction.cs:111:		_sureButton.onClick.RemoveAllListeners();
+decompiled\ConfirmTipAction.cs:112:		_sureButton.onClick.AddListener(OnSureClicked);
+decompiled\ConfirmTipAction.cs:113:		_cancelButton.onClick.RemoveAllListeners();
+decompiled\ConfirmTipAction.cs:114:		_cancelButton.onClick.AddListener(OnCancelClicked);
+decompiled\ConfirmTipAction.cs:118:		_sequence.Append(GetButtonCanvasGroup(_sureButton).DOFade(_sureButtonVisibleAlpha, _buttonFadeDuration));
+decompiled\ConfirmTipAction.cs:119:		_sequence.Join(GetButtonCanvasGroup(_cancelButton).DOFade(_cancelButtonVisibleAlpha, _buttonFadeDuration));
+decompiled\ConfirmTipAction.cs:122:			SetButtonCanvasGroup(_sureButton, _sureButtonVisibleAlpha, interactable: true);
+decompiled\ConfirmTipAction.cs:123:			SetButtonCanvasGroup(_cancelButton, _cancelButtonVisibleAlpha, interactable: true);
+decompiled\ConfirmTipAction.cs:124:			UICursorUtility.MoveCursorToSelectable(_sureButton);
+decompiled\ConfirmTipAction.cs:135:		if (_sureButton != null)
+decompiled\ConfirmTipAction.cs:137:			_sureButton.onClick.RemoveAllListeners();
+decompiled\ConfirmTipAction.cs:138:			SetButtonCanvasGroup(_sureButton, 0f, interactable: false);
+decompiled\ConfirmTipAction.cs:140:		if (_cancelButton != null)
+decompiled\ConfirmTipAction.cs:142:			_cancelButton.onClick.RemoveAllListeners();
+decompiled\ConfirmTipAction.cs:143:			SetButtonCanvasGroup(_cancelButton, 0f, interactable: false);
+decompiled\ConfirmTipAction.cs:185:		SetButtonCanvasGroup(_sureButton, 0f, interactable: false);
+decompiled\ConfirmTipAction.cs:186:		SetButtonCanvasGroup(_cancelButton, 0f, interactable: false);
+decompiled\ConfirmTipAction.cs:202:		if (_loadTip != null && _loadBk != null && _loadTipBk != null && _loadTipText != null && _sureButton != null)
+decompiled\ConfirmTipAction.cs:204:			return _cancelButton != null;
+decompiled\ConfirmTipAction.cs:224:		if (_sureButton != null && _sureButtonVisibleAlpha < 0f)
+decompiled\ConfirmTipAction.cs:226:			_sureButtonVisibleAlpha = ((GetButtonCanvasGroup(_sureButton).alpha > 0.01f) ? GetButtonCanvasGroup(_sureButton).alpha : 1f);
+decompiled\ConfirmTipAction.cs:228:		if (_cancelButton != null && _cancelButtonVisibleAlpha < 0f)
+decompiled\ConfirmTipAction.cs:230:			_cancelButtonVisibleAlpha = ((GetButtonCanvasGroup(_cancelButton).alpha > 0.01f) ? GetButtonCanvasGroup(_cancelButton).alpha : 1f);
+decompiled\ConfirmTipAction.cs:262:	private CanvasGroup GetButtonCanvasGroup(Button button)
+decompiled\ConfirmTipAction.cs:272:	private void SetButtonCanvasGroup(Button button, float alpha, bool interactable)
+decompiled\ConfirmTipAction.cs:276:			CanvasGroup buttonCanvasGroup = GetButtonCanvasGroup(button);
+decompiled\ConfirmTipAction.cs:332:		if (EventSystem.current != null)
+decompiled\ConfirmTipAction.cs:334:			EventSystem.current.SetSelectedGameObject(null);
+decompiled\UISfxTrigger.cs:19:	private Selectable _selectable;
+decompiled\UISfxTrigger.cs:25:	public static void BindActiveSelectablesInChildren(GameObject root, bool includeInactive = true, bool forceHover = false, bool forceClick = false)
+decompiled\UISfxTrigger.cs:29:			Selectable[] componentsInChildren = root.GetComponentsInChildren<Selectable>(includeInactive);
+decompiled\UISfxTrigger.cs:37:	public static void Bind(Selectable selectable, bool forceHover = false, bool forceClick = false)
+decompiled\UISfxTrigger.cs:66:	public static void ActivateMovedCursorTarget(Selectable selectable, Vector2 screenPosition)
+decompiled\UISfxTrigger.cs:68:		if (!(selectable == null) && !(EventSystem.current == null))
+decompiled\UISfxTrigger.cs:70:			PointerEventData eventData = new PointerEventData(EventSystem.current)
+decompiled\UISfxTrigger.cs:73:				button = PointerEventData.InputButton.Left,
+decompiled\UISfxTrigger.cs:85:	public void Configure(Selectable selectable, bool playHover, bool playClick)
+decompiled\UISfxTrigger.cs:110:		if (_playClick && eventData != null && eventData.button == PointerEventData.InputButton.Left && CanPlay())
+decompiled\UISfxTrigger.cs:120:			_selectable = GetComponent<Selectable>();
+decompiled\UISfxTrigger.cs:129:	private static bool HasHoverSprite(Selectable selectable)
+decompiled\UISfxTrigger.cs:131:		if (selectable.transition != Selectable.Transition.SpriteSwap)
+decompiled\UISfxTrigger.cs:143:	private static bool HasPressedSprite(Selectable selectable)
+decompiled\UISfxTrigger.cs:145:		if (selectable.transition != Selectable.Transition.SpriteSwap)
+decompiled\UISfxTrigger.cs:163:	private static Sprite GetCurrentTargetSprite(Selectable selectable)
+decompiled\HistoryObj.cs:18:	public TextMeshProUGUI historyNameTxt;
+decompiled\HistoryObj.cs:20:	public TextMeshProUGUI historyNameSpeakTxt;
+decompiled\HistoryObj.cs:22:	public TextMeshProUGUI historyText;
+decompiled\HistoryObj.cs:24:	public Button historyVoiceBtn;
+decompiled\HistoryObj.cs:30:	private Image _voiceButtonImage;
+decompiled\HistoryObj.cs:34:	private CanvasGroup _voiceButtonCanvasGroup;
+decompiled\HistoryObj.cs:38:	public Button historyReturnBtn;
+decompiled\HistoryObj.cs:43:		ResetVoiceButton();
+decompiled\HistoryObj.cs:66:			SetVoiceButtonVisible(visible: false);
+decompiled\HistoryObj.cs:122:		ConfigureVoiceButton(characterCode, mainData);
+decompiled\HistoryObj.cs:148:	private void ConfigureVoiceButton(CharacterCode code, MainData mainData)
+decompiled\HistoryObj.cs:157:			SetVoiceButtonVisible(visible: false);
+decompiled\HistoryObj.cs:162:			SetVoiceButtonVisible(visible: false);
+decompiled\HistoryObj.cs:165:		CacheVoiceButtonSprites();
+decompiled\HistoryObj.cs:166:		SetVoiceButtonVisible(visible: true);
+decompiled\HistoryObj.cs:180:					SetVoiceButtonPlayingVisual(isPlaying: true);
+decompiled\HistoryObj.cs:197:	private void ResetVoiceButton()
+decompiled\HistoryObj.cs:208:		SetVoiceButtonPlayingVisual(isPlaying: false);
+decompiled\HistoryObj.cs:211:	private void CacheVoiceButtonSprites()
+decompiled\HistoryObj.cs:215:			_voiceButtonImage = historyVoiceBtn.targetGraphic as Image;
+decompiled\HistoryObj.cs:216:			if (_voiceButtonImage == null)
+decompiled\HistoryObj.cs:218:				_voiceButtonImage = historyVoiceBtn.GetComponent<Image>();
+decompiled\HistoryObj.cs:220:			if (_voiceButtonImage != null && normalVoiceSprite == null)
+decompiled\HistoryObj.cs:222:				normalVoiceSprite = _voiceButtonImage.sprite;
+decompiled\HistoryObj.cs:225:			_voiceButtonCanvasGroup = historyVoiceBtn.GetComponent<CanvasGroup>();
+decompiled\HistoryObj.cs:226:			if (_voiceButtonCanvasGroup == null)
+decompiled\HistoryObj.cs:228:				_voiceButtonCanvasGroup = historyVoiceBtn.gameObject.AddComponent<CanvasGroup>();
+decompiled\HistoryObj.cs:233:	private void SetVoiceButtonPlayingVisual(bool isPlaying)
+decompiled\HistoryObj.cs:235:		CacheVoiceButtonSprites();
+decompiled\HistoryObj.cs:236:		if (!(_voiceButtonImage == null))
+decompiled\HistoryObj.cs:238:			_voiceButtonImage.sprite = ((isPlaying && _selectedVoiceSprite != null) ? _selectedVoiceSprite : normalVoiceSprite);
+decompiled\HistoryObj.cs:242:	private void SetVoiceButtonVisible(bool visible)
+decompiled\HistoryObj.cs:247:			CacheVoiceButtonSprites();
+decompiled\HistoryObj.cs:248:			if (_voiceButtonCanvasGroup != null)
+decompiled\HistoryObj.cs:250:				_voiceButtonCanvasGroup.alpha = (visible ? 1f : 0f);
+decompiled\HistoryObj.cs:251:				_voiceButtonCanvasGroup.interactable = visible;
+decompiled\HistoryObj.cs:252:				_voiceButtonCanvasGroup.blocksRaycasts = visible;
+decompiled\HistoryObj.cs:317:		TextMeshProUGUI[] componentsInChildren = GetComponentsInChildren<TextMeshProUGUI>(includeInactive: true);
+decompiled\HistoryObj.cs:320:			TextMeshProUGUI[] array = componentsInChildren;
+decompiled\HistoryObj.cs:321:			foreach (TextMeshProUGUI textMeshProUGUI in array)
+decompiled\HistoryObj.cs:334:		Button[] componentsInChildren2 = GetComponentsInChildren<Button>(includeInactive: true);
+decompiled\HistoryObj.cs:335:		foreach (Button button in componentsInChildren2)
+decompiled\HistoryObj.cs:389:		SetVoiceButtonPlayingVisual(isPlaying: false);
+decompiled\HistoryObj.cs:395:		ResetVoiceButton();
+decompiled\HistoryAction.cs:18:	public Button backButton;
+decompiled\HistoryAction.cs:41:	public Scrollbar historyScrollbar;
+decompiled\HistoryAction.cs:43:	public RectTransform historyScrollbarRoot;
+decompiled\HistoryAction.cs:58:	public bool hideAssignedScrollbarWhenNotScrollable;
+decompiled\HistoryAction.cs:111:	private bool _isUpdatingScrollbar;
+decompiled\HistoryAction.cs:113:	private bool _createdHistoryScrollbar;
+decompiled\HistoryAction.cs:115:	private Image _historyScrollbarTrackImage;
+decompiled\HistoryAction.cs:117:	private Image _historyScrollbarHandleImage;
+decompiled\HistoryAction.cs:174:		if (backButton != null)
+decompiled\HistoryAction.cs:176:			backButton.onClick.RemoveAllListeners();
+decompiled\HistoryAction.cs:177:			backButton.onClick.AddListener(ExitHistory);
+decompiled\HistoryAction.cs:180:		UISfxTrigger.BindActiveSelectablesInChildren(base.gameObject);
+decompiled\HistoryAction.cs:211:		EnsureHistoryScrollbar();
+decompiled\HistoryAction.cs:235:		if ((_isOpen || _initCoroutine != null) && (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1)))
+decompiled\HistoryAction.cs:237:			if (Input.GetMouseButtonDown(1))
+decompiled\HistoryAction.cs:251:				float axis = Input.GetAxis("Mouse ScrollWheel");
+decompiled\HistoryAction.cs:300:	private void EnsureHistoryScrollbar()
+decompiled\HistoryAction.cs:302:		if (historyScrollbar == null && historyScrollbarRoot != null)
+decompiled\HistoryAction.cs:304:			historyScrollbar = historyScrollbarRoot.GetComponent<Scrollbar>();
+decompiled\HistoryAction.cs:306:		if (historyScrollbar != null && historyScrollbarRoot == null)
+decompiled\HistoryAction.cs:308:			historyScrollbarRoot = historyScrollbar.GetComponent<RectTransform>();
+decompiled\HistoryAction.cs:310:		if (historyScrollbarRoot == null)
+decompiled\HistoryAction.cs:312:			Transform autoScrollbarParent = GetAutoScrollbarParent();
+decompiled\HistoryAction.cs:313:			GameObject gameObject = new GameObject("HistoryScrollbar", typeof(RectTransform), typeof(Image), typeof(Scrollbar));
+decompiled\HistoryAction.cs:314:			gameObject.transform.SetParent(autoScrollbarParent, worldPositionStays: false);
+decompiled\HistoryAction.cs:315:			historyScrollbarRoot = gameObject.GetComponent<RectTransform>();
+decompiled\HistoryAction.cs:316:			historyScrollbar = gameObject.GetComponent<Scrollbar>();
+decompiled\HistoryAction.cs:317:			_createdHistoryScrollbar = true;
+decompiled\HistoryAction.cs:319:		if (!(historyScrollbarRoot == null))
+decompiled\HistoryAction.cs:321:			if (historyScrollbar == null)
+decompiled\HistoryAction.cs:323:				historyScrollbar = historyScrollbarRoot.gameObject.AddComponent<Scrollbar>();
+decompiled\HistoryAction.cs:325:			bool createdHistoryScrollbar = _createdHistoryScrollbar;
+decompiled\HistoryAction.cs:326:			if (createdHistoryScrollbar)
+decompiled\HistoryAction.cs:328:				ConfigureHistoryScrollbarRect();
+decompiled\HistoryAction.cs:329:				historyScrollbarRoot.SetAsLastSibling();
+decompiled\HistoryAction.cs:331:			ConfigureHistoryScrollbarVisuals(createdHistoryScrollbar || historyScrollbar.handleRect == null);
+decompiled\HistoryAction.cs:332:			if (_createdHistoryScrollbar)
+decompiled\HistoryAction.cs:334:				historyScrollbar.direction = Scrollbar.Direction.TopToBottom;
+decompiled\HistoryAction.cs:336:			historyScrollbar.numberOfSteps = 0;
+decompiled\HistoryAction.cs:337:			historyScrollbar.onValueChanged.RemoveListener(OnHistoryScrollbarValueChanged);
+decompiled\HistoryAction.cs:338:			historyScrollbar.onValueChanged.AddListener(OnHistoryScrollbarValueChanged);
+decompiled\HistoryAction.cs:342:	private Transform GetAutoScrollbarParent()
+decompiled\HistoryAction.cs:355:	private void ConfigureHistoryScrollbarVisuals(bool canCreateOrReshape)
+decompiled\HistoryAction.cs:357:		_historyScrollbarTrackImage = historyScrollbarRoot.GetComponent<Image>();
+decompiled\HistoryAction.cs:358:		if (_historyScrollbarTrackImage == null && canCreateOrReshape)
+decompiled\HistoryAction.cs:360:			_historyScrollbarTrackImage = historyScrollbarRoot.gameObject.AddComponent<Image>();
+decompiled\HistoryAction.cs:362:		if (_historyScrollbarTrackImage != null)
+decompiled\HistoryAction.cs:366:				_historyScrollbarTrackImage.color = scrollbarTrackColor;
+decompiled\HistoryAction.cs:368:			_historyScrollbarTrackImage.raycastTarget = true;
+decompiled\HistoryAction.cs:370:		RectTransform rectTransform = historyScrollbar.handleRect;
+decompiled\HistoryAction.cs:373:			RectTransform orCreateScrollbarChild = GetOrCreateScrollbarChild(historyScrollbarRoot, "Sliding Area");
+decompiled\HistoryAction.cs:374:			StretchScrollbarRect(orCreateScrollbarChild);
+decompiled\HistoryAction.cs:375:			rectTransform = GetOrCreateScrollbarChild(orCreateScrollbarChild, "Handle");
+decompiled\HistoryAction.cs:376:			StretchScrollbarRect(rectTransform);
+decompiled\HistoryAction.cs:377:			historyScrollbar.handleRect = rectTransform;
+decompiled\HistoryAction.cs:383:		_historyScrollbarHandleImage = rectTransform.GetComponent<Image>();
+decompiled\HistoryAction.cs:384:		if (_historyScrollbarHandleImage == null && canCreateOrReshape)
+decompiled\HistoryAction.cs:386:			_historyScrollbarHandleImage = rectTransform.gameObject.AddComponent<Image>();
+decompiled\HistoryAction.cs:388:		if (_historyScrollbarHandleImage != null)
+decompiled\HistoryAction.cs:392:				_historyScrollbarHandleImage.color = scrollbarHandleColor;
+decompiled\HistoryAction.cs:394:			_historyScrollbarHandleImage.raycastTarget = true;
+decompiled\HistoryAction.cs:395:			if (historyScrollbar.targetGraphic == null)
+decompiled\HistoryAction.cs:397:				historyScrollbar.targetGraphic = _historyScrollbarHandleImage;
+decompiled\HistoryAction.cs:402:	private RectTransform GetOrCreateScrollbarChild(RectTransform parent, string childName)
+decompiled\HistoryAction.cs:423:	private void StretchScrollbarRect(RectTransform rect)
+decompiled\HistoryAction.cs:436:	private void ConfigureHistoryScrollbarRect()
+decompiled\HistoryAction.cs:438:		if (!(historyScrollbarRoot == null))
+decompiled\HistoryAction.cs:444:			historyScrollbarRoot.anchorMin = new Vector2(1f, 0f);
+decompiled\HistoryAction.cs:445:			historyScrollbarRoot.anchorMax = new Vector2(1f, 1f);
+decompiled\HistoryAction.cs:446:			historyScrollbarRoot.pivot = new Vector2(1f, 0.5f);
+decompiled\HistoryAction.cs:447:			historyScrollbarRoot.offsetMin = new Vector2(0f - num2 - num, y);
+decompiled\HistoryAction.cs:448:			historyScrollbarRoot.offsetMax = new Vector2(0f - num2, 0f - num3);
+decompiled\HistoryAction.cs:449:			historyScrollbarRoot.localScale = Vector3.one;
+decompiled\HistoryAction.cs:453:	private void RefreshHistoryScrollbar()
+decompiled\HistoryAction.cs:455:		if (historyScrollbar == null || historyScrollbarRoot == null)
+decompiled\HistoryAction.cs:460:		SetHistoryScrollbarVisible(flag);
+decompiled\HistoryAction.cs:461:		historyScrollbar.interactable = flag;
+decompiled\HistoryAction.cs:464:			SetScrollbarFullSize();
+decompiled\HistoryAction.cs:474:		historyScrollbar.size = Mathf.Clamp(value, GetScrollbarMinHandleSize(), 1f);
+decompiled\HistoryAction.cs:475:		_isUpdatingScrollbar = true;
+decompiled\HistoryAction.cs:477:		historyScrollbar.SetValueWithoutNotify(ToScrollbarValue(normalizedScroll));
+decompiled\HistoryAction.cs:478:		_isUpdatingScrollbar = false;
+decompiled\HistoryAction.cs:481:	private float GetScrollbarMinHandleSize()
+decompiled\HistoryAction.cs:485:		float scrollbarTrackLength = GetScrollbarTrackLength();
+decompiled\HistoryAction.cs:493:	private float GetScrollbarTrackLength()
+decompiled\HistoryAction.cs:495:		if (historyScrollbar == null)
+decompiled\HistoryAction.cs:499:		RectTransform rectTransform = historyScrollbarRoot;
+decompiled\HistoryAction.cs:500:		if (historyScrollbar.handleRect != null && historyScrollbar.handleRect.parent is RectTransform rectTransform2)
+decompiled\HistoryAction.cs:508:		Scrollbar.Direction direction = historyScrollbar.direction;
+decompiled\HistoryAction.cs:516:	private float ToScrollbarValue(float normalizedScroll)
+decompiled\HistoryAction.cs:519:		if (!ShouldInvertScrollbarValue())
+decompiled\HistoryAction.cs:529:		if (!ShouldInvertScrollbarValue())
+decompiled\HistoryAction.cs:536:	private bool ShouldInvertScrollbarValue()
+decompiled\HistoryAction.cs:538:		if (historyScrollbar == null)
+decompiled\HistoryAction.cs:542:		Transform obj = ((historyScrollbarRoot != null) ? historyScrollbarRoot : historyScrollbar.transform);
+decompiled\HistoryAction.cs:543:		Vector3 scrollbarLocalValueDirection = GetScrollbarLocalValueDirection(historyScrollbar.direction);
+decompiled\HistoryAction.cs:547:	private Vector3 GetScrollbarLocalValueDirection(Scrollbar.Direction direction)
+decompiled\HistoryAction.cs:551:			Scrollbar.Direction.RightToLeft => Vector3.left, 
+decompiled\HistoryAction.cs:552:			Scrollbar.Direction.BottomToTop => Vector3.up, 
+decompiled\HistoryAction.cs:553:			Scrollbar.Direction.TopToBottom => Vector3.down, 
+decompiled\HistoryAction.cs:567:	private void SetHistoryScrollbarVisible(bool visible)
+decompiled\HistoryAction.cs:569:		if (historyScrollbarRoot != null)
+decompiled\HistoryAction.cs:571:			historyScrollbarRoot.gameObject.SetActive(ShouldShowHistoryScrollbar(visible));
+decompiled\HistoryAction.cs:575:	private bool ShouldShowHistoryScrollbar(bool canScroll)
+decompiled\HistoryAction.cs:581:		if (_createdHistoryScrollbar)
+decompiled\HistoryAction.cs:585:		return !hideAssignedScrollbarWhenNotScrollable;
+decompiled\HistoryAction.cs:588:	private void RefreshUnavailableHistoryScrollbar()
+decompiled\HistoryAction.cs:590:		if (!(historyScrollbar == null) && !(historyScrollbarRoot == null))
+decompiled\HistoryAction.cs:592:			SetHistoryScrollbarVisible(visible: false);
+decompiled\HistoryAction.cs:593:			historyScrollbar.interactable = false;
+decompiled\HistoryAction.cs:594:			SetScrollbarFullSize();
+decompiled\HistoryAction.cs:598:	private void SetScrollbarFullSize()
+decompiled\HistoryAction.cs:600:		if (!(historyScrollbar == null))
+decompiled\HistoryAction.cs:602:			historyScrollbar.size = 1f;
+decompiled\HistoryAction.cs:603:			_isUpdatingScrollbar = true;
+decompiled\HistoryAction.cs:604:			historyScrollbar.SetValueWithoutNotify(ToScrollbarValue(0f));
+decompiled\HistoryAction.cs:605:			_isUpdatingScrollbar = false;
+decompiled\HistoryAction.cs:609:	private void OnHistoryScrollbarValueChanged(float value)
+decompiled\HistoryAction.cs:611:		if (!_isUpdatingScrollbar && !(historyScrollbar == null) && CanScrollHistory() && (_isOpen || _initCoroutine != null))
+decompiled\HistoryAction.cs:631:			RefreshUnavailableHistoryScrollbar();
+decompiled\HistoryAction.cs:671:		RefreshHistoryScrollbar();
+decompiled\HistoryAction.cs:871:		if (EventSystem.current != null)
+decompiled\HistoryAction.cs:873:			EventSystem.current.SetSelectedGameObject(null);
+decompiled\HistoryAction.cs:1150:		AddFadeTarget(backButton, targets);
+decompiled\HistoryAction.cs:1151:		AddFadeTarget(historyScrollbar, targets);
+decompiled\HistoryAction.cs:1296:		if (historyScrollbar != null)
+decompiled\HistoryAction.cs:1298:			historyScrollbar.onValueChanged.RemoveListener(OnHistoryScrollbarValueChanged);
+decompiled\SaveLoadSlot.cs:15:	public TextMeshProUGUI saveTimeText;
+decompiled\SaveLoadSlot.cs:17:	public TextMeshProUGUI saveDataNameText;
+decompiled\SaveLoadSlot.cs:23:	public Button slotButton;
+decompiled\SaveLoadSlot.cs:25:	public Button deleteButton;
+decompiled\SaveLoadSlot.cs:33:		if (deleteButton != null)
+decompiled\SaveLoadSlot.cs:35:			deleteButton.gameObject.SetActive(value: false);
+decompiled\SaveLoadSlot.cs:44:		slotButton.onClick.RemoveAllListeners();
+decompiled\SaveLoadSlot.cs:45:		slotButton.onClick.AddListener(OnSlotButtonClicked);
+decompiled\SaveLoadSlot.cs:46:		deleteButton.onClick.RemoveAllListeners();
+decompiled\SaveLoadSlot.cs:47:		deleteButton.onClick.AddListener(OnDeleteButtonClicked);
+decompiled\SaveLoadSlot.cs:48:		UISfxTrigger.Bind(slotButton);
+decompiled\SaveLoadSlot.cs:49:		UISfxTrigger.Bind(deleteButton);
+decompiled\SaveLoadSlot.cs:56:		deleteButton.gameObject.SetActive(saveLoadData != null);
+decompiled\SaveLoadSlot.cs:106:	private void OnSlotButtonClicked()
+decompiled\SaveLoadSlot.cs:179:	private void OnDeleteButtonClicked()
+decompiled\DialogueHandle.cs:62:	public TextMeshProUGUI mainDialogueName;
+decompiled\DialogueHandle.cs:64:	public TextMeshProUGUI mainDialogueName_Speak;
+decompiled\DialogueHandle.cs:66:	public Button voiceButton;
+decompiled\DialogueHandle.cs:68:	public TextMeshProUGUI mainDiagueText;
+decompiled\DialogueHandle.cs:72:	public List<Button> dialogueButtons;
+decompiled\DialogueHandle.cs:101:	private TextMeshProUGUI _debugConsoleStatusText;
+decompiled\DialogueHandle.cs:187:	private Image _voiceButtonImage;
+decompiled\DialogueHandle.cs:189:	private Sprite _voiceButtonNormalSprite;
+decompiled\DialogueHandle.cs:191:	private Sprite _voiceButtonSelectedSprite;
+decompiled\DialogueHandle.cs:193:	private Coroutine _voiceButtonStateCoroutine;
+decompiled\DialogueHandle.cs:195:	private bool _voiceButtonVisualLocked;
+decompiled\DialogueHandle.cs:197:	private bool _voiceButtonBlocksReplay;
+decompiled\DialogueHandle.cs:199:	private Image _autoPlayButtonImage;
+decompiled\DialogueHandle.cs:201:	private Sprite _autoPlayButtonNormalSprite;
+decompiled\DialogueHandle.cs:203:	private Sprite _autoPlayButtonSelectedSprite;
+decompiled\DialogueHandle.cs:205:	private bool _suppressNextAutoPlayToggle;
+decompiled\DialogueHandle.cs:207:	private int _suppressAutoPlayToggleFrame;
+decompiled\DialogueHandle.cs:209:	private Image _skipModeButtonImage;
+decompiled\DialogueHandle.cs:211:	private Sprite _skipModeButtonNormalSprite;
+decompiled\DialogueHandle.cs:213:	private Sprite _skipModeButtonSelectedSprite;
+decompiled\DialogueHandle.cs:215:	private int _skipModeToggleFrame;
+decompiled\DialogueHandle.cs:240:	private bool _skipModeButtonOn;
+decompiled\DialogueHandle.cs:610:		if (_voiceButtonVisualLocked)
+decompiled\DialogueHandle.cs:612:			SetVoiceButtonPlayingVisual(isPlaying: true);
+decompiled\DialogueHandle.cs:616:			SetAutoPlayButtonVisual(selected: true);
+decompiled\DialogueHandle.cs:618:		if (_skipModeButtonOn || _ctrlSkipMode || _holdSkipMode)
+decompiled\DialogueHandle.cs:620:			SetSkipModeButtonVisual(selected: true);
+decompiled\DialogueHandle.cs:622:		if (_suppressNextAutoPlayToggle && Time.frameCount > _suppressAutoPlayToggleFrame + 1)
+decompiled\DialogueHandle.cs:624:			_suppressNextAutoPlayToggle = false;
+decompiled\DialogueHandle.cs:631:		if (dialogueButtons == null || dialogueButtons.Count < 9)
+decompiled\DialogueHandle.cs:635:		Bind(0, ToggleAutoPlayMode, stopAutoPlayBeforeAction: false);
+decompiled\DialogueHandle.cs:636:		Bind(1, ToggleSkipMode, stopAutoPlayBeforeAction: false);
+decompiled\DialogueHandle.cs:661:		Bind(8, HideDialogueUiFromButton);
+decompiled\DialogueHandle.cs:662:		CacheAutoPlayButtonSprites();
+decompiled\DialogueHandle.cs:663:		SetAutoPlayButtonVisual(_autoPlayMode);
+decompiled\DialogueHandle.cs:664:		CacheSkipModeButtonSprites();
+decompiled\DialogueHandle.cs:665:		SetSkipModeButtonVisual(_skipModeButtonOn);
+decompiled\DialogueHandle.cs:666:		if (voiceButton != null)
+decompiled\DialogueHandle.cs:668:			voiceButton.onClick.RemoveAllListeners();
+decompiled\DialogueHandle.cs:669:			voiceButton.onClick.AddListener(delegate
+decompiled\DialogueHandle.cs:679:			CacheVoiceButtonSprites();
+decompiled\DialogueHandle.cs:681:		UISfxTrigger.BindActiveSelectablesInChildren(base.gameObject, includeInactive: true, forceHover: true, forceClick: true);
+decompiled\DialogueHandle.cs:684:			if (!(dialogueButtons[i] == null))
+decompiled\DialogueHandle.cs:686:				dialogueButtons[i].onClick.RemoveAllListeners();
+decompiled\DialogueHandle.cs:687:				dialogueButtons[i].onClick.AddListener(delegate
+decompiled\DialogueHandle.cs:689:					if (IsDialogueButtonActionAllowed(allowWhenSelectionOpen))
+decompiled\DialogueHandle.cs:697:						RefreshContinuousModeButtonVisuals();
+decompiled\DialogueHandle.cs:713:		if (dialogueButtons == null)
+decompiled\DialogueHandle.cs:717:		foreach (Button dialogueButton in dialogueButtons)
+decompiled\DialogueHandle.cs:719:			dialogueButton?.onClick.RemoveAllListeners();
+decompiled\DialogueHandle.cs:721:		voiceButton?.onClick.RemoveAllListeners();
+decompiled\DialogueHandle.cs:722:		StopVoiceButtonStateCoroutine();
+decompiled\DialogueHandle.cs:723:		SetAutoPlayButtonVisual(selected: false);
+decompiled\DialogueHandle.cs:724:		SetSkipModeButtonVisual(selected: false);
+decompiled\DialogueHandle.cs:727:	public void ToggleSkipMode()
+decompiled\DialogueHandle.cs:729:		if (!_skipModeButtonOn)
+decompiled\DialogueHandle.cs:738:		_skipModeButtonOn = !_skipModeButtonOn;
+decompiled\DialogueHandle.cs:739:		_skipModeToggleFrame = Time.frameCount;
+decompiled\DialogueHandle.cs:740:		if (!_skipModeButtonOn)
+decompiled\DialogueHandle.cs:744:		SetSkipModeButtonVisual(_skipModeButtonOn);
+decompiled\DialogueHandle.cs:747:	public void ToggleAutoPlayMode()
+decompiled\DialogueHandle.cs:749:		if (_suppressNextAutoPlayToggle)
+decompiled\DialogueHandle.cs:751:			_suppressNextAutoPlayToggle = false;
+decompiled\DialogueHandle.cs:767:		SetAutoPlayButtonVisual(selected: true);
+decompiled\DialogueHandle.cs:775:			SetAutoPlayButtonVisual(selected: false);
+decompiled\DialogueHandle.cs:781:			SetAutoPlayButtonVisual(selected: false);
+decompiled\DialogueHandle.cs:791:	private void RefreshContinuousModeButtonVisuals()
+decompiled\DialogueHandle.cs:793:		SetAutoPlayButtonVisual(_autoPlayMode);
+decompiled\DialogueHandle.cs:794:		SetSkipModeButtonVisual(_skipModeButtonOn || _holdSkipMode);
+decompiled\DialogueHandle.cs:797:	private void CacheAutoPlayButtonSprites()
+decompiled\DialogueHandle.cs:799:		Button autoPlayButton = GetAutoPlayButton();
+decompiled\DialogueHandle.cs:800:		if (!(autoPlayButton == null))
+decompiled\DialogueHandle.cs:802:			_autoPlayButtonImage = autoPlayButton.targetGraphic as Image;
+decompiled\DialogueHandle.cs:803:			if (_autoPlayButtonImage == null)
+decompiled\DialogueHandle.cs:805:				_autoPlayButtonImage = autoPlayButton.GetComponent<Image>();
+decompiled\DialogueHandle.cs:807:			if (_autoPlayButtonImage != null && _autoPlayButtonNormalSprite == null)
+decompiled\DialogueHandle.cs:809:				_autoPlayButtonNormalSprite = _autoPlayButtonImage.sprite;
+decompiled\DialogueHandle.cs:811:			SpriteState spriteState = autoPlayButton.spriteState;
+decompiled\DialogueHandle.cs:812:			_autoPlayButtonSelectedSprite = ((spriteState.selectedSprite != null) ? spriteState.selectedSprite : ((spriteState.pressedSprite != null) ? spriteState.pressedSprite : spriteState.highlightedSprite));
+decompiled\DialogueHandle.cs:816:	private void SetAutoPlayButtonVisual(bool selected)
+decompiled\DialogueHandle.cs:818:		if (_autoPlayButtonImage == null)
+decompiled\DialogueHandle.cs:820:			CacheAutoPlayButtonSprites();
+decompiled\DialogueHandle.cs:822:		if (_autoPlayButtonImage == null)
+decompiled\DialogueHandle.cs:826:		if (selected && _autoPlayButtonSelectedSprite != null)
+decompiled\DialogueHandle.cs:828:			_autoPlayButtonImage.overrideSprite = _autoPlayButtonSelectedSprite;
+decompiled\DialogueHandle.cs:831:		_autoPlayButtonImage.overrideSprite = null;
+decompiled\DialogueHandle.cs:832:		if (_autoPlayButtonNormalSprite != null && _autoPlayButtonImage.sprite != _autoPlayButtonNormalSprite)
+decompiled\DialogueHandle.cs:834:			_autoPlayButtonImage.sprite = _autoPlayButtonNormalSprite;
+decompiled\DialogueHandle.cs:838:	private Button GetAutoPlayButton()
+decompiled\DialogueHandle.cs:840:		if (dialogueButtons == null || dialogueButtons.Count <= 0)
+decompiled\DialogueHandle.cs:844:		return dialogueButtons[0];
+decompiled\DialogueHandle.cs:847:	private void CacheSkipModeButtonSprites()
+decompiled\DialogueHandle.cs:849:		Button skipModeButton = GetSkipModeButton();
+decompiled\DialogueHandle.cs:850:		if (!(skipModeButton == null))
+decompiled\DialogueHandle.cs:852:			_skipModeButtonImage = skipModeButton.targetGraphic as Image;
+decompiled\DialogueHandle.cs:853:			if (_skipModeButtonImage == null)
+decompiled\DialogueHandle.cs:855:				_skipModeButtonImage = skipModeButton.GetComponent<Image>();
+decompiled\DialogueHandle.cs:857:			if (_skipModeButtonImage != null && _skipModeButtonNormalSprite == null)
+decompiled\DialogueHandle.cs:859:				_skipModeButtonNormalSprite = _skipModeButtonImage.sprite;
+decompiled\DialogueHandle.cs:861:			SpriteState spriteState = skipModeButton.spriteState;
+decompiled\DialogueHandle.cs:862:			_skipModeButtonSelectedSprite = ((spriteState.selectedSprite != null) ? spriteState.selectedSprite : ((spriteState.pressedSprite != null) ? spriteState.pressedSprite : spriteState.highlightedSprite));
+decompiled\DialogueHandle.cs:866:	private void SetSkipModeButtonVisual(bool selected)
+decompiled\DialogueHandle.cs:868:		if (_skipModeButtonImage == null)
+decompiled\DialogueHandle.cs:870:			CacheSkipModeButtonSprites();
+decompiled\DialogueHandle.cs:872:		if (_skipModeButtonImage == null)
+decompiled\DialogueHandle.cs:876:		if (selected && _skipModeButtonSelectedSprite != null)
+decompiled\DialogueHandle.cs:878:			_skipModeButtonImage.overrideSprite = _skipModeButtonSelectedSprite;
+decompiled\DialogueHandle.cs:881:		_skipModeButtonImage.overrideSprite = null;
+decompiled\DialogueHandle.cs:882:		if (_skipModeButtonNormalSprite != null && _skipModeButtonImage.sprite != _skipModeButtonNormalSprite)
+decompiled\DialogueHandle.cs:884:			_skipModeButtonImage.sprite = _skipModeButtonNormalSprite;
+decompiled\DialogueHandle.cs:888:	private Button GetSkipModeButton()
+decompiled\DialogueHandle.cs:890:		if (dialogueButtons == null || dialogueButtons.Count <= 1)
+decompiled\DialogueHandle.cs:894:		return dialogueButtons[1];
+decompiled\DialogueHandle.cs:951:		StopVoiceButtonStateCoroutine();
+decompiled\DialogueHandle.cs:975:		StopVoiceButtonStateCoroutine();
+decompiled\DialogueHandle.cs:981:	private void HideDialogueUiFromButton()
+decompiled\DialogueHandle.cs:1000:		_voiceButtonStateCoroutine = null;
+decompiled\DialogueHandle.cs:1007:		StopVoiceButtonStateCoroutine();
+decompiled\DialogueHandle.cs:1322:		_skipModeButtonOn = false;
+decompiled\DialogueHandle.cs:1327:		SetSkipModeButtonVisual(selected: false);
+decompiled\DialogueHandle.cs:1332:		if (!_isSkipMode && !_skipModeButtonOn && !_ctrlSkipMode)
+decompiled\DialogueHandle.cs:1400:			UpdateVoiceButton();
+decompiled\DialogueHandle.cs:1518:		if (Input.GetKeyDown(KeyCode.BackQuote))
+decompiled\DialogueHandle.cs:1534:		if (Input.GetKeyDown(KeyCode.Escape))
+decompiled\DialogueHandle.cs:1539:		if ((Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter)) && EventSystem.current != null && _debugConsoleDialogueInput != null && EventSystem.current.currentSelectedGameObject == _debugConsoleDialogueInput.gameObject)
+decompiled\DialogueHandle.cs:1641:			Button button = CreateDebugConsoleButton(gameObject.transform, "跳转");
+decompiled\DialogueHandle.cs:1644:			Button button2 = CreateDebugConsoleButton(gameObject.transform, "关闭");
+decompiled\DialogueHandle.cs:1665:		TextMeshProUGUI textMeshProUGUI = CreateDebugConsoleText("Text", gameObject.transform, string.Empty, 20f, TextAlignmentOptions.MidlineLeft, Color.white);
+decompiled\DialogueHandle.cs:1669:		TextMeshProUGUI textMeshProUGUI2 = CreateDebugConsoleText("Placeholder", gameObject.transform, "请输入序列号", 17f, TextAlignmentOptions.MidlineLeft, new Color(0.55f, 0.6f, 0.66f, 1f));
+decompiled\DialogueHandle.cs:1679:	private Button CreateDebugConsoleButton(Transform parent, string text)
+decompiled\DialogueHandle.cs:1681:		GameObject gameObject = new GameObject(text + "Button", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image), typeof(Button));
+decompiled\DialogueHandle.cs:1685:		Button component2 = gameObject.GetComponent<Button>();
+decompiled\DialogueHandle.cs:1691:	private TextMeshProUGUI CreateDebugConsoleText(string name, Transform parent, string text, float fontSize, TextAlignmentOptions alignment, Color color)
+decompiled\DialogueHandle.cs:1695:		TextMeshProUGUI textMeshProUGUI = obj.AddComponent<TextMeshProUGUI>();
+decompiled\DialogueHandle.cs:1727:		if (Input.GetKeyDown(KeyCode.Escape))
+decompiled\DialogueHandle.cs:1744:		if (_skipModeButtonOn && Time.frameCount > _skipModeToggleFrame + 1 && HasAnyPointerClickDown() && !IsPointerOverButton(GetSkipModeButton()))
+decompiled\DialogueHandle.cs:1750:		bool flag = _ctrlSkipMode || _skipModeButtonOn || _holdSkipMode;
+decompiled\DialogueHandle.cs:1777:		bool num = Input.GetMouseButtonDown(0) && !IsPointerOverUI();
+decompiled\DialogueHandle.cs:1778:		bool keyDown = Input.GetKeyDown(KeyCode.Space);
+decompiled\DialogueHandle.cs:1779:		bool flag2 = Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter);
+decompiled\DialogueHandle.cs:1793:		if (!Input.GetMouseButtonDown(0) && !Input.GetMouseButtonDown(1))
+decompiled\DialogueHandle.cs:1795:			return Input.GetMouseButtonDown(2);
+decompiled\DialogueHandle.cs:1806:		bool mouseButtonDown = Input.GetMouseButtonDown(1);
+decompiled\DialogueHandle.cs:1807:		if (_dialogueUiHidden && (Input.GetMouseButtonDown(0) || mouseButtonDown || Input.GetKeyDown(KeyCode.Space)))
+decompiled\DialogueHandle.cs:1812:		if (!mouseButtonDown)
+decompiled\DialogueHandle.cs:1929:		AddDialogueHideCanvasGroup((voiceButton != null) ? voiceButton.transform : null);
+decompiled\DialogueHandle.cs:1930:		if (dialogueButtons == null)
+decompiled\DialogueHandle.cs:1934:		foreach (Button dialogueButton in dialogueButtons)
+decompiled\DialogueHandle.cs:1936:			AddDialogueHideCanvasGroup((dialogueButton != null) ? dialogueButton.transform : null);
+decompiled\DialogueHandle.cs:2019:		else if (!Input.GetKey(KeyCode.LeftControl) && !Input.GetKey(KeyCode.RightControl))
+decompiled\DialogueHandle.cs:2033:			SetSkipModeButtonVisual(selected: true);
+decompiled\DialogueHandle.cs:2041:		if (ctrlSkipMode && !_skipModeButtonOn && !_holdSkipMode)
+decompiled\DialogueHandle.cs:2044:			SetSkipModeButtonVisual(selected: false);
+decompiled\DialogueHandle.cs:2050:		if (_skipModeButtonOn || !IsMainFlowInputAllowed())
+decompiled\DialogueHandle.cs:2055:		if (Input.GetMouseButtonDown(0) && !IsPointerOverUI())
+decompiled\DialogueHandle.cs:2059:		if (Input.GetKeyDown(KeyCode.Space))
+decompiled\DialogueHandle.cs:2063:		if (_holdSkipFromMouse && !Input.GetMouseButton(0))
+decompiled\DialogueHandle.cs:2067:		if (_holdSkipFromSpace && !Input.GetKey(KeyCode.Space))
+decompiled\DialogueHandle.cs:2083:				SetSkipModeButtonVisual(selected: true);
+decompiled\DialogueHandle.cs:2110:		if (!_skipModeButtonOn)
+decompiled\DialogueHandle.cs:2112:			SetSkipModeButtonVisual(selected: false);
+decompiled\DialogueHandle.cs:2118:		if (EventSystem.current != null)
+decompiled\DialogueHandle.cs:2120:			return EventSystem.current.IsPointerOverGameObject();
+decompiled\DialogueHandle.cs:2134:	private bool IsDialogueButtonActionAllowed(bool allowWhenSelectionOpen)
+decompiled\DialogueHandle.cs:2199:		if (EventSystem.current != null)
+decompiled\DialogueHandle.cs:2201:			EventSystem.current.SetSelectedGameObject(null);
+decompiled\DialogueHandle.cs:2205:	private bool IsPointerOverButton(Button button)
+decompiled\DialogueHandle.cs:2207:		if (button == null || EventSystem.current == null)
+decompiled\DialogueHandle.cs:2211:		PointerEventData eventData = new PointerEventData(EventSystem.current)
+decompiled\DialogueHandle.cs:2216:		EventSystem.current.RaycastAll(eventData, list);
+decompiled\DialogueHandle.cs:2562:			StartVoiceButtonPlayingState(blockReplay: true);
+decompiled\DialogueHandle.cs:2583:	private void UpdateVoiceButton()
+decompiled\DialogueHandle.cs:2585:		if (!(voiceButton == null) && currentMainData != null)
+decompiled\DialogueHandle.cs:2592:			voiceButton.gameObject.SetActive(flag);
+decompiled\DialogueHandle.cs:2595:				StopVoiceButtonStateCoroutine();
+decompiled\DialogueHandle.cs:2602:		if (!_voiceButtonBlocksReplay && currentMainData != null && !string.IsNullOrEmpty(currentMainData.dialogueCharacterCode) && !string.IsNullOrEmpty(currentMainData.voiceData.voiceIndex) && Enum.TryParse<CharacterCode>(currentMainData.dialogueCharacterCode, out var result) && !IsCharacterVoiceMuted(result))
+decompiled\DialogueHandle.cs:2608:				StartVoiceButtonPlayingState(blockReplay: false);
+decompiled\DialogueHandle.cs:2618:			StopVoiceButtonStateCoroutine();
+decompiled\DialogueHandle.cs:2620:		UpdateVoiceButton();
+decompiled\DialogueHandle.cs:2657:	private void CacheVoiceButtonSprites()
+decompiled\DialogueHandle.cs:2659:		_voiceButtonImage = ((voiceButton != null) ? (voiceButton.targetGraphic as Image) : null);
+decompiled\DialogueHandle.cs:2660:		if (_voiceButtonImage == null && voiceButton != null)
+decompiled\DialogueHandle.cs:2662:			_voiceButtonImage = voiceButton.GetComponent<Image>();
+decompiled\DialogueHandle.cs:2664:		if (_voiceButtonImage != null && _voiceButtonNormalSprite == null)
+decompiled\DialogueHandle.cs:2666:			_voiceButtonNormalSprite = _voiceButtonImage.sprite;
+decompiled\DialogueHandle.cs:2668:		if (voiceButton != null)
+decompiled\DialogueHandle.cs:2670:			_voiceButtonSelectedSprite = voiceButton.spriteState.selectedSprite;
+decompiled\DialogueHandle.cs:2674:	private void StartVoiceButtonPlayingState(bool blockReplay)
+decompiled\DialogueHandle.cs:2676:		if (!(voiceButton == null))
+decompiled\DialogueHandle.cs:2678:			CacheVoiceButtonSprites();
+decompiled\DialogueHandle.cs:2679:			StopVoiceButtonStateCoroutine(resetVisual: false);
+decompiled\DialogueHandle.cs:2680:			_voiceButtonBlocksReplay = blockReplay;
+decompiled\DialogueHandle.cs:2681:			_voiceButtonStateCoroutine = StartCoroutine(VoiceButtonPlayingStateCoroutine());
+decompiled\DialogueHandle.cs:2685:	private IEnumerator VoiceButtonPlayingStateCoroutine()
+decompiled\DialogueHandle.cs:2687:		_voiceButtonVisualLocked = true;
+decompiled\DialogueHandle.cs:2688:		SetVoiceButtonPlayingVisual(isPlaying: true);
+decompiled\DialogueHandle.cs:2691:			SetVoiceButtonPlayingVisual(isPlaying: true);
+decompiled\DialogueHandle.cs:2694:		_voiceButtonVisualLocked = false;
+decompiled\DialogueHandle.cs:2695:		_voiceButtonBlocksReplay = false;
+decompiled\DialogueHandle.cs:2696:		SetVoiceButtonPlayingVisual(isPlaying: false);
+decompiled\DialogueHandle.cs:2697:		_voiceButtonStateCoroutine = null;
+decompiled\DialogueHandle.cs:2741:	private void SetVoiceButtonPlayingVisual(bool isPlaying)
+decompiled\DialogueHandle.cs:2743:		if (_voiceButtonImage == null)
+decompiled\DialogueHandle.cs:2747:		if (isPlaying && _voiceButtonSelectedSprite != null)
+decompiled\DialogueHandle.cs:2749:			_voiceButtonImage.overrideSprite = _voiceButtonSelectedSprite;
+decompiled\DialogueHandle.cs:2752:		_voiceButtonImage.overrideSprite = null;
+decompiled\DialogueHandle.cs:2753:		if (_voiceButtonNormalSprite != null && _voiceButtonImage.sprite != _voiceButtonNormalSprite)
+decompiled\DialogueHandle.cs:2755:			_voiceButtonImage.sprite = _voiceButtonNormalSprite;
+decompiled\DialogueHandle.cs:2759:	private void StopVoiceButtonStateCoroutine(bool resetVisual = true)
+decompiled\DialogueHandle.cs:2761:		if (_voiceButtonStateCoroutine != null)
+decompiled\DialogueHandle.cs:2763:			StopCoroutine(_voiceButtonStateCoroutine);
+decompiled\DialogueHandle.cs:2764:			_voiceButtonStateCoroutine = null;
+decompiled\DialogueHandle.cs:2766:		_voiceButtonVisualLocked = false;
+decompiled\DialogueHandle.cs:2767:		_voiceButtonBlocksReplay = false;
+decompiled\DialogueHandle.cs:2770:			SetVoiceButtonPlayingVisual(isPlaying: false);
+decompiled\DialogueHandle.cs:3109:		TMP_TextInfo textInfo = mainDiagueText.textInfo;
+decompiled\DialogueHandle.cs:3182:			TMP_TextInfo textInfo = mainDiagueText.textInfo;
+decompiled\Flan_BN.Controller\ControllerManager.cs:196:		if (Input.GetButton("A") || Input.GetButton("B") || Input.GetButton("Y") || Input.GetButton("X"))
+decompiled\Flan_BN.Controller\ControllerManager.cs:217:		if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(2))
+decompiled\Flan_BN.Controller\ControllerManager.cs:221:		if (Input.GetAxis("Mouse X") != 0f || Input.GetAxis("Mouse Y") != 0f)
+decompiled\Flan_BN.Controller\ControllerManager.cs:230:		if (Input.GetButtonDown("A"))
+decompiled\Flan_BN.Controller\ControllerManager.cs:234:		if (Input.GetButtonDown("B"))
+decompiled\Flan_BN.Controller\ControllerManager.cs:238:		if (Input.GetButtonDown("X"))
+decompiled\Flan_BN.Controller\ControllerManager.cs:242:		if (Input.GetButtonDown("Y"))
+decompiled\Flan_BN.Controller\ControllerManager.cs:246:		if (Input.GetButtonDown("RB"))
+decompiled\Flan_BN.Controller\ControllerManager.cs:250:		if (Input.GetButtonDown("LB"))
+decompiled\Flan_BN.Controller\ControllerManager.cs:254:		Input.GetAxis("LT-RT");
+decompiled\Flan_BN.Controller\ControllerManager.cs:256:		Input.GetAxis("LT-RT");
+decompiled\Flan_BN.Controller\ControllerManager.cs:258:		if (Input.GetButtonDown("Option"))
+decompiled\Flan_BN.Controller\ControllerManager.cs:262:		if (Input.GetButtonDown("Map"))
+decompiled\Flan_BN.Controller\ControllerManager.cs:266:		Input.GetAxis("LeftHandle");
+decompiled\Flan_BN.Controller\ControllerManager.cs:268:		Input.GetAxis("RightHandle");
+decompiled\Flan_BN.Controller\ControllerManager.cs:270:		Input.GetAxis("LeftHandleY");
+decompiled\Flan_BN.Controller\ControllerManager.cs:272:		Input.GetAxis("RightHandleY");
+decompiled\Flan_BN.Controller\ControllerManager.cs:278:		axisValue = Input.GetAxis("LeftHandle");
+decompiled\Flan_BN.Controller\ControllerManager.cs:315:		axisValueY = Input.GetAxis("LeftHandleY");
+decompiled\Flan_BN.Controller\ControllerManager.cs:352:		axisValue2 = Input.GetAxis("RightHandle");
+decompiled\Flan_BN.Controller\ControllerManager.cs:389:		RaxisValueY2 = Input.GetAxis("RightHandleY");
+decompiled\Flan_BN.Controller\ControllerManager.cs:426:		RaxisValueY3 = Input.GetAxis("RightHandleY");
+decompiled\Flan_BN.Controller\ControllerManager.cs:463:		RaxisValueX3 = Input.GetAxis("RightHandle");
+decompiled\Flan_BN.Controller\ControllerManager.cs:500:		axisValueX = Input.GetAxis("LeftHandle");
+decompiled\Flan_BN.Controller\ControllerManager.cs:537:		axisValueY1 = Input.GetAxis("LeftHandleY");
+decompiled\Flan_BN.Controller\ControllerManager.cs:582:		if (Input.GetAxis("LT-RT") == 1f)
+decompiled\Flan_BN.Controller\ControllerManager.cs:613:		if (Input.GetAxis("LT-RT") == -1f)
+decompiled\QLSlot.cs:13:	public TextMeshProUGUI slotText;
+decompiled\MenuButton.cs:5:public class MenuButton : MonoBehaviour, IPointerEnterHandler, IEventSystemHandler, IPointerDownHandler
+decompiled\MenuButton.cs:11:	public Button button;
+decompiled\MenuButton.cs:19:	public void InitButton()
+decompiled\MenuButton.cs:33:		SetButtonEnabled(buttonEnabled);
+decompiled\MenuButton.cs:36:	public void OnButtonClick()
+decompiled\MenuButton.cs:71:		if (eventData != null && eventData.button == PointerEventData.InputButton.Left && CanPlaySfx())
+decompiled\MenuButton.cs:95:	private void SetButtonEnabled(bool enabled)
+decompiled\SaveloadAction.cs:44:	[Header("页签Toggle池（共10个）")]
+decompiled\SaveloadAction.cs:45:	public List<Toggle> pageTogglePOOL;
+decompiled\SaveloadAction.cs:47:	public float pageToggleBaseFadeDuration = 0.12f;
+decompiled\SaveloadAction.cs:49:	[Header("快速存档Toggle")]
+decompiled\SaveloadAction.cs:50:	public Toggle quickSaveToggle;
+decompiled\SaveloadAction.cs:53:	public Button closeButton;
+decompiled\SaveloadAction.cs:139:	public TextMeshProUGUI LoadTipTxt;
+decompiled\SaveloadAction.cs:141:	public Button SureBtn;
+decompiled\SaveloadAction.cs:143:	public Button CancelBtn;
+decompiled\SaveloadAction.cs:149:	public float loadTipButtonFadeDuration = 0.12f;
+decompiled\SaveloadAction.cs:174:			if (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1))
+decompiled\SaveloadAction.cs:176:				if (Input.GetMouseButtonDown(1))
+decompiled\SaveloadAction.cs:185:		if (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1))
+decompiled\SaveloadAction.cs:187:			if (Input.GetMouseButtonDown(1))
+decompiled\SaveloadAction.cs:257:		if (closeButton != null)
+decompiled\SaveloadAction.cs:259:			closeButton.onClick.RemoveAllListeners();
+decompiled\SaveloadAction.cs:260:			closeButton.onClick.AddListener(UninitAction);
+decompiled\SaveloadAction.cs:262:		if (pageTogglePOOL != null)
+decompiled\SaveloadAction.cs:264:			for (int i = 0; i < pageTogglePOOL.Count; i++)
+decompiled\SaveloadAction.cs:266:				if (pageTogglePOOL[i] == null)
+decompiled\SaveloadAction.cs:271:				pageTogglePOOL[i].onValueChanged.RemoveAllListeners();
+decompiled\SaveloadAction.cs:272:				pageTogglePOOL[i].onValueChanged.AddListener(delegate(bool isOn)
+decompiled\SaveloadAction.cs:276:						if (quickSaveToggle != null)
+decompiled\SaveloadAction.cs:278:							quickSaveToggle.SetIsOnWithoutNotify(value: false);
+decompiled\SaveloadAction.cs:282:					RefreshPageToggleVisuals(immediate: false);
+decompiled\SaveloadAction.cs:286:		if (quickSaveToggle != null)
+decompiled\SaveloadAction.cs:288:			quickSaveToggle.onValueChanged.RemoveAllListeners();
+decompiled\SaveloadAction.cs:289:			quickSaveToggle.onValueChanged.AddListener(delegate(bool isOn)
+decompiled\SaveloadAction.cs:293:					OnQuickPageToggled();
+decompiled\SaveloadAction.cs:295:				RefreshPageToggleVisuals(immediate: false);
+decompiled\SaveloadAction.cs:298:		UISfxTrigger.BindActiveSelectablesInChildren(base.gameObject);
+decompiled\SaveloadAction.cs:300:		if (quickSaveToggle != null)
+decompiled\SaveloadAction.cs:302:			quickSaveToggle.SetIsOnWithoutNotify(value: false);
+decompiled\SaveloadAction.cs:304:		if (pageTogglePOOL != null && pageTogglePOOL.Count > 0 && pageTogglePOOL[0] != null)
+decompiled\SaveloadAction.cs:306:			pageTogglePOOL[0].isOn = true;
+decompiled\SaveloadAction.cs:308:		RefreshPageToggleVisuals(immediate: true);
+decompiled\SaveloadAction.cs:369:		if (EventSystem.current != null)
+decompiled\SaveloadAction.cs:371:			EventSystem.current.SetSelectedGameObject(null);
+decompiled\SaveloadAction.cs:402:		SetButtonCanvasGroup(SureBtn, 0f, interactable: false);
+decompiled\SaveloadAction.cs:403:		SetButtonCanvasGroup(CancelBtn, 0f, interactable: false);
+decompiled\SaveloadAction.cs:411:		_loadTipSequence.Append(GetButtonCanvasGroup(SureBtn).DOFade(_sureBtnVisibleAlpha, loadTipButtonFadeDuration));
+decompiled\SaveloadAction.cs:412:		_loadTipSequence.Join(GetButtonCanvasGroup(CancelBtn).DOFade(_cancelBtnVisibleAlpha, loadTipButtonFadeDuration));
+decompiled\SaveloadAction.cs:415:			SetButtonCanvasGroup(SureBtn, _sureBtnVisibleAlpha, interactable: true);
+decompiled\SaveloadAction.cs:416:			SetButtonCanvasGroup(CancelBtn, _cancelBtnVisibleAlpha, interactable: true);
+decompiled\SaveloadAction.cs:417:			MoveCursorToLoadTipSureButton();
+decompiled\SaveloadAction.cs:422:	private void MoveCursorToLoadTipSureButton()
+decompiled\SaveloadAction.cs:424:		UICursorUtility.MoveCursorToSelectable(SureBtn);
+decompiled\SaveloadAction.cs:453:	private static Vector2 GetSelectableVisualCenterScreenPoint(Selectable selectable, RectTransform fallbackRect)
+decompiled\SaveloadAction.cs:492:		SetButtonCanvasGroup(SureBtn, 0f, interactable: false);
+decompiled\SaveloadAction.cs:493:		SetButtonCanvasGroup(CancelBtn, 0f, interactable: false);
+decompiled\SaveloadAction.cs:525:			SetButtonCanvasGroup(SureBtn, 0f, interactable: false);
+decompiled\SaveloadAction.cs:530:			SetButtonCanvasGroup(CancelBtn, 0f, interactable: false);
+decompiled\SaveloadAction.cs:564:			_sureBtnVisibleAlpha = ((GetButtonCanvasGroup(SureBtn).alpha > 0.01f) ? GetButtonCanvasGroup(SureBtn).alpha : 1f);
+decompiled\SaveloadAction.cs:568:			_cancelBtnVisibleAlpha = ((GetButtonCanvasGroup(CancelBtn).alpha > 0.01f) ? GetButtonCanvasGroup(CancelBtn).alpha : 1f);
+decompiled\SaveloadAction.cs:600:	private CanvasGroup GetButtonCanvasGroup(Button button)
+decompiled\SaveloadAction.cs:610:	private void SetButtonCanvasGroup(Button button, float alpha, bool interactable)
+decompiled\SaveloadAction.cs:614:			CanvasGroup buttonCanvasGroup = GetButtonCanvasGroup(button);
+decompiled\SaveloadAction.cs:684:		StopPageToggleBaseFadeTweens();
+decompiled\SaveloadAction.cs:693:	private void OnQuickPageToggled()
+decompiled\SaveloadAction.cs:695:		if (pageTogglePOOL != null)
+decompiled\SaveloadAction.cs:697:			foreach (Toggle item in pageTogglePOOL)
+decompiled\SaveloadAction.cs:718:		int pageToggleCount = GetPageToggleCount();
+decompiled\SaveloadAction.cs:719:		bool flag = quickSaveToggle != null;
+decompiled\SaveloadAction.cs:720:		if (pageToggleCount > 0 || flag)
+decompiled\SaveloadAction.cs:724:			int max = Mathf.Max(0, pageToggleCount - 1);
+decompiled\SaveloadAction.cs:728:				SetCurrentPageByToggle(num2);
+decompiled\SaveloadAction.cs:733:	private int GetPageToggleCount()
+decompiled\SaveloadAction.cs:735:		if (pageTogglePOOL == null)
+decompiled\SaveloadAction.cs:740:		for (int i = 0; i < pageTogglePOOL.Count; i++)
+decompiled\SaveloadAction.cs:742:			if (pageTogglePOOL[i] != null)
+decompiled\SaveloadAction.cs:750:	private void SetCurrentPageByToggle(int pageIndex)
+decompiled\SaveloadAction.cs:754:			if (!(quickSaveToggle == null))
+decompiled\SaveloadAction.cs:756:				if (quickSaveToggle.isOn)
+decompiled\SaveloadAction.cs:759:					RefreshPageToggleVisuals(immediate: false);
+decompiled\SaveloadAction.cs:763:					quickSaveToggle.isOn = true;
+decompiled\SaveloadAction.cs:769:			if (pageTogglePOOL == null || pageIndex < 0 || pageIndex >= pageTogglePOOL.Count)
+decompiled\SaveloadAction.cs:773:			Toggle toggle = pageTogglePOOL[pageIndex];
+decompiled\SaveloadAction.cs:779:					RefreshPageToggleVisuals(immediate: false);
+decompiled\SaveloadAction.cs:789:	private void RefreshPageToggleVisuals(bool immediate)
+decompiled\SaveloadAction.cs:791:		RefreshToggleBaseVisual(quickSaveToggle, immediate);
+decompiled\SaveloadAction.cs:792:		if (pageTogglePOOL == null)
+decompiled\SaveloadAction.cs:796:		foreach (Toggle item in pageTogglePOOL)
+decompiled\SaveloadAction.cs:798:			RefreshToggleBaseVisual(item, immediate);
+decompiled\SaveloadAction.cs:802:	private void StopPageToggleBaseFadeTweens()
+decompiled\SaveloadAction.cs:804:		if (pageTogglePOOL != null)
+decompiled\SaveloadAction.cs:806:			foreach (Toggle item in pageTogglePOOL)
+decompiled\SaveloadAction.cs:814:		if (quickSaveToggle?.targetGraphic != null)
+decompiled\SaveloadAction.cs:816:			quickSaveToggle.targetGraphic.DOKill();
+decompiled\SaveloadAction.cs:845:	private void RefreshToggleBaseVisual(Toggle toggle, bool immediate)
+decompiled\SaveloadAction.cs:856:			if (immediate || pageToggleBaseFadeDuration <= 0f || !base.gameObject.activeInHierarchy)
+decompiled\SaveloadAction.cs:862:				targetGraphic.DOFade(num, pageToggleBaseFadeDuration).SetEase(Ease.OutQuad);
+decompiled\SaveloadAction.cs:1055:		AddFadeTarget(pageTogglePOOL, targets);
+decompiled\SaveloadAction.cs:1056:		AddFadeTarget(quickSaveToggle, targets);
+decompiled\SaveloadAction.cs:1058:		AddFadeTarget(closeButton, targets);
+decompiled\MenuAction.cs:18:	public MenuButton startNewGameButton;
+decompiled\MenuAction.cs:20:	public MenuButton loadGameButton;
+decompiled\MenuAction.cs:22:	public MenuButton settingButton;
+decompiled\MenuAction.cs:24:	public MenuButton cGButton;
+decompiled\MenuAction.cs:26:	public MenuButton staffButton;
+decompiled\MenuAction.cs:28:	public MenuButton exitButton;
+decompiled\MenuAction.cs:34:	public float menuButtonsFadeLeadTime = 0.12f;
+decompiled\MenuAction.cs:36:	public float menuButtonsFadeDuration = 0.16f;
+decompiled\MenuAction.cs:44:	private Sequence _menuButtonsFadeSequence;
+decompiled\MenuAction.cs:46:	private bool _menuButtonsInitialized;
+decompiled\MenuAction.cs:95:		StopMenuButtonsFadeAnim();
+decompiled\MenuAction.cs:113:		StopMenuButtonsFadeAnim();
+decompiled\MenuAction.cs:115:		PrepareMenuButtonsInitialState();
+decompiled\MenuAction.cs:179:			InitMenuButtonsWithFade();
+decompiled\MenuAction.cs:182:		float atPosition = Mathf.Max(0f, sequence.Duration(includeLoops: false) - menuButtonsFadeLeadTime);
+decompiled\MenuAction.cs:183:		sequence.InsertCallback(atPosition, InitMenuButtonsWithFade);
+decompiled\MenuAction.cs:338:	private void InitMenuButtons()
+decompiled\MenuAction.cs:340:		startNewGameButton.InitButton();
+decompiled\MenuAction.cs:341:		loadGameButton.InitButton();
+decompiled\MenuAction.cs:342:		settingButton.InitButton();
+decompiled\MenuAction.cs:343:		cGButton.InitButton();
+decompiled\MenuAction.cs:344:		staffButton.InitButton();
+decompiled\MenuAction.cs:345:		exitButton.InitButton();
+decompiled\MenuAction.cs:346:		UISfxTrigger.BindActiveSelectablesInChildren(base.gameObject);
+decompiled\MenuAction.cs:349:	private void PrepareMenuButtonsInitialState()
+decompiled\MenuAction.cs:351:		_menuButtonsInitialized = false;
+decompiled\MenuAction.cs:352:		foreach (MenuButton menuButton in GetMenuButtons())
+decompiled\MenuAction.cs:354:			if (!(menuButton == null))
+decompiled\MenuAction.cs:356:				CanvasGroup orAddCanvasGroup = GetOrAddCanvasGroup(menuButton);
+decompiled\MenuAction.cs:361:				menuButton.gameObject.SetActive(value: false);
+decompiled\MenuAction.cs:366:	private void InitMenuButtonsWithFade()
+decompiled\MenuAction.cs:368:		if (_menuButtonsInitialized)
+decompiled\MenuAction.cs:372:		_menuButtonsInitialized = true;
+decompiled\MenuAction.cs:373:		InitMenuButtons();
+decompiled\MenuAction.cs:374:		StopMenuButtonsFadeAnim();
+decompiled\MenuAction.cs:375:		_menuButtonsFadeSequence = DOTween.Sequence();
+decompiled\MenuAction.cs:376:		foreach (MenuButton menuButton in GetMenuButtons())
+decompiled\MenuAction.cs:378:			if (!(menuButton == null))
+decompiled\MenuAction.cs:380:				CanvasGroup orAddCanvasGroup = GetOrAddCanvasGroup(menuButton);
+decompiled\MenuAction.cs:384:				_menuButtonsFadeSequence.Join(orAddCanvasGroup.DOFade(1f, menuButtonsFadeDuration).SetEase(Ease.OutQuad));
+decompiled\MenuAction.cs:387:		_menuButtonsFadeSequence.OnComplete(delegate
+decompiled\MenuAction.cs:389:			foreach (MenuButton menuButton2 in GetMenuButtons())
+decompiled\MenuAction.cs:391:				if (!(menuButton2 == null))
+decompiled\MenuAction.cs:393:					CanvasGroup orAddCanvasGroup2 = GetOrAddCanvasGroup(menuButton2);
+decompiled\MenuAction.cs:399:			_menuButtonsFadeSequence = null;
+decompiled\MenuAction.cs:403:	private void StopMenuButtonsFadeAnim()
+decompiled\MenuAction.cs:405:		if (_menuButtonsFadeSequence != null)
+decompiled\MenuAction.cs:407:			_menuButtonsFadeSequence.Kill();
+decompiled\MenuAction.cs:408:			_menuButtonsFadeSequence = null;
+decompiled\MenuAction.cs:412:	private IEnumerable<MenuButton> GetMenuButtons()
+decompiled\MenuAction.cs:414:		yield return startNewGameButton;
+decompiled\MenuAction.cs:415:		yield return loadGameButton;
+decompiled\MenuAction.cs:416:		yield return settingButton;
+decompiled\MenuAction.cs:417:		yield return cGButton;
+decompiled\MenuAction.cs:418:		yield return staffButton;
+decompiled\MenuAction.cs:419:		yield return exitButton;
+decompiled\MenuAction.cs:422:	private CanvasGroup GetOrAddCanvasGroup(MenuButton menuButton)
+decompiled\MenuAction.cs:424:		CanvasGroup canvasGroup = menuButton.GetComponent<CanvasGroup>();
+decompiled\MenuAction.cs:427:			canvasGroup = menuButton.gameObject.AddComponent<CanvasGroup>();
+decompiled\QLButtonHoverRelay.cs:4:public class QLButtonHoverRelay : MonoBehaviour, IPointerEnterHandler, IEventSystemHandler, IPointerExitHandler
+decompiled\QLButtonHoverRelay.cs:10:		Panel?.NotifyButtonPointerEnter();
+decompiled\QLButtonHoverRelay.cs:15:		Panel?.NotifyButtonPointerExit();
+decompiled\UIHanderCenter.cs:252:					if (allowSkip && Input.GetMouseButtonDown(0))
+decompiled\UIHanderCenter.cs:422:			if (EventSystem.current != null)
+decompiled\UIHanderCenter.cs:424:				EventSystem.current.SetSelectedGameObject(null);
+decompiled\SettingButton.cs:6:public class SettingButton : MonoBehaviour, IPointerClickHandler, IEventSystemHandler, IPointerEnterHandler, IPointerExitHandler
+decompiled\SettingButton.cs:10:	public Image ButtonImage;
+decompiled\SettingButton.cs:12:	public int SettingButtonID;
+decompiled\SettingButton.cs:14:	public const int MuteMMVoiceButtonId = 6;
+decompiled\SettingButton.cs:16:	public const int MuteMCLVoiceButtonId = 7;
+decompiled\SettingButton.cs:18:	public const int MuteHXCVoiceButtonId = 8;
+decompiled\SettingButton.cs:20:	public const int MuteBXYVoiceButtonId = 9;
+decompiled\SettingButton.cs:28:		ButtonImage.rectTransform.DOKill();
+decompiled\SettingButton.cs:29:		ButtonImage.rectTransform.DOScale(1.1f, 0.1f).SetEase(Ease.OutBack);
+decompiled\SettingButton.cs:34:		ButtonImage.rectTransform.DOKill();
+decompiled\SettingButton.cs:35:		ButtonImage.rectTransform.DOScale(1f, 0.1f).SetEase(Ease.OutBack);
+decompiled\SettingButton.cs:40:		if (eventData != null && eventData.button == PointerEventData.InputButton.Left)
+decompiled\SettingButton.cs:45:		switch (SettingButtonID)
+decompiled\SettingButton.cs:69:				ClickButton();
+decompiled\SettingButton.cs:73:				ResetButton();
+decompiled\SettingButton.cs:81:				ClickButton();
+decompiled\SettingButton.cs:85:				ResetButton();
+decompiled\SettingButton.cs:92:				ClickButton();
+decompiled\SettingButton.cs:96:				ResetButton();
+decompiled\SettingButton.cs:103:				ClickButton();
+decompiled\SettingButton.cs:107:				ResetButton();
+decompiled\SettingButton.cs:111:			ToggleCharacterVoiceMute(currentSettings, CharacterCode.MM);
+decompiled\SettingButton.cs:114:			ToggleCharacterVoiceMute(currentSettings, CharacterCode.MCL);
+decompiled\SettingButton.cs:117:			ToggleCharacterVoiceMute(currentSettings, CharacterCode.HXC);
+decompiled\SettingButton.cs:120:			ToggleCharacterVoiceMute(currentSettings, CharacterCode.BXY);
+decompiled\SettingButton.cs:123:			Debug.LogError("未知的设置按钮ID: " + SettingButtonID);
+decompiled\SettingButton.cs:129:	private void ToggleCharacterVoiceMute(GameSettings settings, CharacterCode characterCode)
+decompiled\SettingButton.cs:135:			ClickButton();
+decompiled\SettingButton.cs:139:			ResetButton();
+decompiled\SettingButton.cs:144:	public void ResetButton()
+decompiled\SettingButton.cs:146:		ButtonImage.sprite = normalSprite;
+decompiled\SettingButton.cs:149:	public void ClickButton()
+decompiled\SettingButton.cs:151:		ButtonImage.sprite = clickedSprite;
+decompiled\SettingAction.cs:25:	public List<Button> Buttons;
+decompiled\SettingAction.cs:27:	public List<Slider> Sliders;
+decompiled\SettingAction.cs:33:	public List<TextMeshProUGUI> Texts;
+decompiled\SettingAction.cs:36:	public Slider MasterVolumeSlider;
+decompiled\SettingAction.cs:38:	public Slider VoiceVolumeSlider;
+decompiled\SettingAction.cs:40:	public Slider BGMVolumeSlider;
+decompiled\SettingAction.cs:42:	public Slider SEVolumeSlider;
+decompiled\SettingAction.cs:47:	public SettingButton FullScreenButton;
+decompiled\SettingAction.cs:49:	public SettingButton WindowedButton;
+decompiled\SettingAction.cs:51:	public SettingButton PlayTextSetDownBGMVolumeButton;
+decompiled\SettingAction.cs:53:	public SettingButton StopVoiceInDialogueEndButton;
+decompiled\SettingAction.cs:55:	public SettingButton NoReadJumpButton;
+decompiled\SettingAction.cs:57:	public SettingButton ReadedColorButton;
+decompiled\SettingAction.cs:60:	public SettingButton MMVoiceMuteButton;
+decompiled\SettingAction.cs:62:	public SettingButton MCLVoiceMuteButton;
+decompiled\SettingAction.cs:64:	public SettingButton HXCVoiceMuteButton;
+decompiled\SettingAction.cs:66:	public SettingButton BXYVoiceMuteButton;
+decompiled\SettingAction.cs:68:	public Button CloseActionButton;
+decompiled\SettingAction.cs:70:	public Button ResetAllSettingButton;
+decompiled\SettingAction.cs:72:	public Button SaveSettingButton;
+decompiled\SettingAction.cs:75:	public Slider TextSpeedSlider;
+decompiled\SettingAction.cs:77:	public Slider TextSpeedSliderInAutoMode;
+decompiled\SettingAction.cs:79:	public Slider DialogueBkAlphaSlider;
+decompiled\SettingAction.cs:81:	public TextMeshProUGUI DefaultTextInOpition;
+decompiled\SettingAction.cs:83:	public TextMeshProUGUI ShowTextInOpition;
+decompiled\SettingAction.cs:138:		if (base.gameObject.activeInHierarchy && (!(Singleton<UIHanderCenter>.m_Instence != null) || !Singleton<UIHanderCenter>.m_Instence.IsGlobalConfirmTipOpen) && (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1)) && _uninitCoroutine == null)
+decompiled\SettingAction.cs:140:			if (Input.GetMouseButtonDown(1))
+decompiled\SettingAction.cs:193:	public void AddActionInButtons()
+decompiled\SettingAction.cs:195:		CloseActionButton.onClick.RemoveAllListeners();
+decompiled\SettingAction.cs:196:		CloseActionButton.onClick.AddListener(SaveSettingsAndBackToTitle);
+decompiled\SettingAction.cs:197:		ResetAllSettingButton.onClick.RemoveAllListeners();
+decompiled\SettingAction.cs:198:		DisablePersistentButtonListeners(ResetAllSettingButton);
+decompiled\SettingAction.cs:199:		ResetAllSettingButton.onClick.AddListener(delegate
+decompiled\SettingAction.cs:206:		SaveSettingButton.onClick.RemoveAllListeners();
+decompiled\SettingAction.cs:207:		SaveSettingButton.onClick.AddListener(SaveSettingsAndClose);
+decompiled\SettingAction.cs:208:		MasterVolumeSlider.onValueChanged.RemoveAllListeners();
+decompiled\SettingAction.cs:209:		MasterVolumeSlider.onValueChanged.AddListener(delegate(float value)
+decompiled\SettingAction.cs:214:		VoiceVolumeSlider.onValueChanged.RemoveAllListeners();
+decompiled\SettingAction.cs:215:		VoiceVolumeSlider.onValueChanged.AddListener(delegate(float value)
+decompiled\SettingAction.cs:220:		BGMVolumeSlider.onValueChanged.RemoveAllListeners();
+decompiled\SettingAction.cs:221:		BGMVolumeSlider.onValueChanged.AddListener(delegate(float value)
+decompiled\SettingAction.cs:226:		SEVolumeSlider.onValueChanged.RemoveAllListeners();
+decompiled\SettingAction.cs:227:		SEVolumeSlider.onValueChanged.AddListener(delegate(float value)
+decompiled\SettingAction.cs:232:		TextSpeedSlider.onValueChanged.RemoveAllListeners();
+decompiled\SettingAction.cs:233:		TextSpeedSlider.onValueChanged.AddListener(delegate(float value)
+decompiled\SettingAction.cs:242:		TextSpeedSliderInAutoMode.onValueChanged.RemoveAllListeners();
+decompiled\SettingAction.cs:243:		TextSpeedSliderInAutoMode.onValueChanged.AddListener(delegate(float value)
+decompiled\SettingAction.cs:252:		if (DialogueBkAlphaSlider != null)
+decompiled\SettingAction.cs:254:			DialogueBkAlphaSlider.onValueChanged.RemoveAllListeners();
+decompiled\SettingAction.cs:255:			DialogueBkAlphaSlider.onValueChanged.AddListener(delegate(float value)
+decompiled\SettingAction.cs:269:	private static void DisablePersistentButtonListeners(Button button)
+decompiled\SettingAction.cs:337:		if (EventSystem.current != null)
+decompiled\SettingAction.cs:339:			EventSystem.current.SetSelectedGameObject(null);
+decompiled\SettingAction.cs:343:	private void ConfigureTextSpeedSliderBounds()
+decompiled\SettingAction.cs:346:		ConfigureTextSpeedSlider(TextSpeedSlider, minTextSpeedSetting);
+decompiled\SettingAction.cs:347:		ConfigureTextSpeedSlider(TextSpeedSliderInAutoMode, minTextSpeedSetting);
+decompiled\SettingAction.cs:350:	private void ConfigureTextSpeedSlider(Slider slider, float minValue)
+decompiled\SettingAction.cs:372:		ConfigureTextSpeedSliderBounds();
+decompiled\SettingAction.cs:373:		ConfigureDialogueBkAlphaSlider();
+decompiled\SettingAction.cs:375:		MasterVolumeSlider.value = currentSettings.masterVolume;
+decompiled\SettingAction.cs:376:		VoiceVolumeSlider.value = currentSettings.voiceVolume;
+decompiled\SettingAction.cs:377:		BGMVolumeSlider.value = currentSettings.bgmVolume;
+decompiled\SettingAction.cs:378:		SEVolumeSlider.value = currentSettings.sfxVolume;
+decompiled\SettingAction.cs:381:			FullScreenButton.ClickButton();
+decompiled\SettingAction.cs:382:			WindowedButton.ResetButton();
+decompiled\SettingAction.cs:386:			WindowedButton.ClickButton();
+decompiled\SettingAction.cs:387:			FullScreenButton.ResetButton();
+decompiled\SettingAction.cs:391:			PlayTextSetDownBGMVolumeButton.ClickButton();
+decompiled\SettingAction.cs:395:			PlayTextSetDownBGMVolumeButton.ResetButton();
+decompiled\SettingAction.cs:399:			StopVoiceInDialogueEndButton.ClickButton();
+decompiled\SettingAction.cs:403:			StopVoiceInDialogueEndButton.ResetButton();
+decompiled\SettingAction.cs:407:			NoReadJumpButton.ClickButton();
+decompiled\SettingAction.cs:411:			NoReadJumpButton.ResetButton();
+decompiled\SettingAction.cs:415:			ReadedColorButton.ClickButton();
+decompiled\SettingAction.cs:419:			ReadedColorButton.ResetButton();
+decompiled\SettingAction.cs:421:		RefreshCharacterVoiceMuteButtons(currentSettings);
+decompiled\SettingAction.cs:422:		TextSpeedSlider.value = currentSettings.TextSpeed;
+decompiled\SettingAction.cs:423:		TextSpeedSliderInAutoMode.value = currentSettings.AutoPlaySpeed;
+decompiled\SettingAction.cs:424:		if (DialogueBkAlphaSlider != null)
+decompiled\SettingAction.cs:426:			DialogueBkAlphaSlider.SetValueWithoutNotify(currentSettings.GetDialogueBkAlpha());
+decompiled\SettingAction.cs:441:			RefreshCharacterVoiceMuteButtons(Singleton<SaveLoadManager>.m_Instence.CurrentSettings);
+decompiled\SettingAction.cs:446:	private void RefreshCharacterVoiceMuteButtons(GameSettings settings)
+decompiled\SettingAction.cs:450:			RefreshSettingButtonVisual(GetSettingButtonById(6, MMVoiceMuteButton), settings.muteMMVoice);
+decompiled\SettingAction.cs:451:			RefreshSettingButtonVisual(GetSettingButtonById(7, MCLVoiceMuteButton), settings.muteMCLVoice);
+decompiled\SettingAction.cs:452:			RefreshSettingButtonVisual(GetSettingButtonById(8, HXCVoiceMuteButton), settings.muteHXCVoice);
+decompiled\SettingAction.cs:453:			RefreshSettingButtonVisual(GetSettingButtonById(9, BXYVoiceMuteButton), settings.muteBXYVoice);
+decompiled\SettingAction.cs:457:	private void ConfigureDialogueBkAlphaSlider()
+decompiled\SettingAction.cs:459:		if (!(DialogueBkAlphaSlider == null))
+decompiled\SettingAction.cs:461:			DialogueBkAlphaSlider.minValue = 0f;
+decompiled\SettingAction.cs:462:			DialogueBkAlphaSlider.maxValue = 1f;
+decompiled\SettingAction.cs:466:	private SettingButton GetSettingButtonById(int settingButtonId, SettingButton assignedButton)
+decompiled\SettingAction.cs:468:		if (assignedButton != null)
+decompiled\SettingAction.cs:470:			return assignedButton;
+decompiled\SettingAction.cs:472:		SettingButton[] componentsInChildren = GetComponentsInChildren<SettingButton>(includeInactive: true);
+decompiled\SettingAction.cs:473:		foreach (SettingButton settingButton in componentsInChildren)
+decompiled\SettingAction.cs:475:			if (settingButton != null && settingButton.SettingButtonID == settingButtonId)
+decompiled\SettingAction.cs:477:				return settingButton;
+decompiled\SettingAction.cs:483:	private static void RefreshSettingButtonVisual(SettingButton button, bool enabled)
+decompiled\SettingAction.cs:489:				button.ClickButton();
+decompiled\SettingAction.cs:493:				button.ResetButton();
+decompiled\SettingAction.cs:514:		AddActionInButtons();
+decompiled\SettingAction.cs:515:		UISfxTrigger.BindActiveSelectablesInChildren(base.gameObject);
+decompiled\SettingAction.cs:733:		AddFadeTarget(Buttons, targets);
+decompiled\SettingAction.cs:734:		AddFadeTarget(Sliders, targets);
+decompiled\SettingAction.cs:736:		AddFadeTarget(MasterVolumeSlider, targets);
+decompiled\SettingAction.cs:737:		AddFadeTarget(VoiceVolumeSlider, targets);
+decompiled\SettingAction.cs:738:		AddFadeTarget(BGMVolumeSlider, targets);
+decompiled\SettingAction.cs:739:		AddFadeTarget(SEVolumeSlider, targets);
+decompiled\SettingAction.cs:740:		AddFadeTarget(TextSpeedSlider, targets);
+decompiled\SettingAction.cs:741:		AddFadeTarget(TextSpeedSliderInAutoMode, targets);
+decompiled\SettingAction.cs:742:		AddFadeTarget(DialogueBkAlphaSlider, targets);
+decompiled\SettingAction.cs:743:		AddFadeTarget(FullScreenButton, targets);
+decompiled\SettingAction.cs:744:		AddFadeTarget(WindowedButton, targets);
+decompiled\SettingAction.cs:745:		AddFadeTarget(PlayTextSetDownBGMVolumeButton, targets);
+decompiled\SettingAction.cs:746:		AddFadeTarget(StopVoiceInDialogueEndButton, targets);
+decompiled\SettingAction.cs:747:		AddFadeTarget(NoReadJumpButton, targets);
+decompiled\SettingAction.cs:748:		AddFadeTarget(ReadedColorButton, targets);
+decompiled\SettingAction.cs:749:		AddFadeTarget(MMVoiceMuteButton, targets);
+decompiled\SettingAction.cs:750:		AddFadeTarget(MCLVoiceMuteButton, targets);
+decompiled\SettingAction.cs:751:		AddFadeTarget(HXCVoiceMuteButton, targets);
+decompiled\SettingAction.cs:752:		AddFadeTarget(BXYVoiceMuteButton, targets);
+decompiled\SettingAction.cs:753:		AddFadeTarget(CloseActionButton, targets);
+decompiled\SettingAction.cs:754:		AddFadeTarget(ResetAllSettingButton, targets);
+decompiled\SettingAction.cs:755:		AddFadeTarget(SaveSettingButton, targets);
+decompiled\UICursorUtility.cs:41:	public static void MoveCursorToSelectable(Selectable selectable)
+decompiled\UICursorUtility.cs:48:				Vector2 selectableVisualCenterScreenPoint = GetSelectableVisualCenterScreenPoint(selectable, rectTransform);
+decompiled\UICursorUtility.cs:55:	public static Vector2 GetSelectableVisualCenterScreenPoint(Selectable selectable, RectTransform fallbackRect)
+decompiled\SelectionAction.cs:15:	private Button[] optionButtons = new Button[5];
+decompiled\SelectionAction.cs:44:		if (panelRoot == null || optionButtons == null || optionButtons.Length == 0)
+decompiled\SelectionAction.cs:57:		for (int i = 0; i < optionButtons.Length; i++)
+decompiled\SelectionAction.cs:59:			if (!(optionButtons[i] == null))
+decompiled\SelectionAction.cs:61:				optionButtons[i].onClick.RemoveAllListeners();
+decompiled\SelectionAction.cs:62:				optionButtons[i].interactable = true;
+decompiled\SelectionAction.cs:63:				ResetOptionTextColor(optionButtons[i]);
+decompiled\SelectionAction.cs:64:				optionButtons[i].gameObject.SetActive(value: false);
+decompiled\SelectionAction.cs:71:			if (num >= optionButtons.Length)
+decompiled\SelectionAction.cs:80:			Button button = optionButtons[num];
+decompiled\SelectionAction.cs:88:			TMP_Text componentInChildren = button.GetComponentInChildren<TMP_Text>();
+decompiled\SelectionAction.cs:113:		if (optionButtons != null)
+decompiled\SelectionAction.cs:115:			Button[] array = optionButtons;
+decompiled\SelectionAction.cs:116:			foreach (Button button in array)
+decompiled\SelectionAction.cs:335:	private void ApplyOptionState(Button button, TMP_Text text, bool selected)
+decompiled\SelectionAction.cs:362:		if (optionButtons != null)
+decompiled\SelectionAction.cs:364:			_optionNormalTextColors = new Color[optionButtons.Length];
+decompiled\SelectionAction.cs:365:			for (int i = 0; i < optionButtons.Length; i++)
+decompiled\SelectionAction.cs:367:				TMP_Text tMP_Text = ((optionButtons[i] != null) ? optionButtons[i].GetComponentInChildren<TMP_Text>(includeInactive: true) : null);
+decompiled\SelectionAction.cs:373:	private void ResetOptionTextColor(Button button)
+decompiled\SelectionAction.cs:377:			ResetOptionTextColor(button, button.GetComponentInChildren<TMP_Text>(includeInactive: true));
+decompiled\SelectionAction.cs:381:	private void ResetOptionTextColor(Button button, TMP_Text text)
+decompiled\SelectionAction.cs:387:		if (optionButtons == null)
+decompiled\SelectionAction.cs:392:		int num = Array.IndexOf(optionButtons, button);
+decompiled\SelectionAction.cs:393:		if (_optionNormalTextColors == null || _optionNormalTextColors.Length != optionButtons.Length)
+decompiled\QLPanel.cs:26:	public Button quickLoadButton;
+decompiled\QLPanel.cs:46:	private bool _isButtonHovered;
+decompiled\QLPanel.cs:53:		BindQuickLoadButtonRelay();
+decompiled\QLPanel.cs:54:		if (hideOnAwake && !_isButtonHovered)
+decompiled\QLPanel.cs:75:	public void OnQuickLoadButtonPointerEnter()
+decompiled\QLPanel.cs:77:		NotifyButtonPointerEnter();
+decompiled\QLPanel.cs:80:	public void OnQuickLoadButtonPointerExit()
+decompiled\QLPanel.cs:82:		NotifyButtonPointerExit();
+decompiled\QLPanel.cs:85:	public void NotifyButtonPointerEnter()
+decompiled\QLPanel.cs:87:		_isButtonHovered = true;
+decompiled\QLPanel.cs:92:	public void NotifyButtonPointerExit()
+decompiled\QLPanel.cs:94:		_isButtonHovered = false;
+decompiled\QLPanel.cs:211:			if (!_isButtonHovered && !_isPanelHovered && _hoveredSlots.Count == 0 && panelRoot != null)
+decompiled\QLPanel.cs:235:		if (!_isButtonHovered && !_isPanelHovered && _hoveredSlots.Count <= 0)
+decompiled\QLPanel.cs:246:		if (!_isButtonHovered && !_isPanelHovered && _hoveredSlots.Count == 0)
+decompiled\QLPanel.cs:338:	private void BindQuickLoadButtonRelay()
+decompiled\QLPanel.cs:340:		if (!(quickLoadButton == null))
+decompiled\QLPanel.cs:342:			QLButtonHoverRelay qLButtonHoverRelay = quickLoadButton.GetComponent<QLButtonHoverRelay>();
+decompiled\QLPanel.cs:343:			if (qLButtonHoverRelay == null)
+decompiled\QLPanel.cs:345:				qLButtonHoverRelay = quickLoadButton.gameObject.AddComponent<QLButtonHoverRelay>();
+decompiled\QLPanel.cs:347:			qLButtonHoverRelay.Panel = this;
+decompiled\AssetRipper_export_20260808_013212\Scripts\DOTweenPro\DG\Tweening\DOTweenPath.cs:337:		public override void DOTogglePause()
+decompiled\AssetRipper_export_20260808_013212\Scripts\DOTweenPro\DG\Tweening\DOTweenPath.cs:339:			tween.TogglePause();
+decompiled\AssetRipper_export_20260808_013212\Scripts\DOTweenPro\DG\Tweening\Core\ABSAnimationComponent.cs:53:		public abstract void DOTogglePause();
+decompiled\StaffAction.cs:68:		if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Escape))
+decompiled\StaffAction.cs:72:		else if (Input.GetMouseButtonDown(0) && !_isTransitioning)
+decompiled\AssetRipper_export_20260808_013212\Scripts\DOTween\DG\Tweening\DOTween.cs:808:		public static int TogglePauseAll()
+decompiled\AssetRipper_export_20260808_013212\Scripts\DOTween\DG\Tweening\DOTween.cs:810:			return TweenManager.FilteredOperation(OperationType.TogglePause, FilterType.All, null, optionalBool: false, 0f);
+decompiled\AssetRipper_export_20260808_013212\Scripts\DOTween\DG\Tweening\DOTween.cs:813:		public static int TogglePause(object targetOrId)
+decompiled\AssetRipper_export_20260808_013212\Scripts\DOTween\DG\Tweening\DOTween.cs:819:			return TweenManager.FilteredOperation(OperationType.TogglePause, FilterType.TargetOrId, targetOrId, optionalBool: false, 0f);
+decompiled\AssetRipper_export_20260808_013212\Scripts\DOTween\DG\Tweening\Core\TweenManager.cs:775:						case OperationType.TogglePause:
+decompiled\AssetRipper_export_20260808_013212\Scripts\DOTween\DG\Tweening\Core\TweenManager.cs:776:							if (TogglePause(tween))
+decompiled\AssetRipper_export_20260808_013212\Scripts\DOTween\DG\Tweening\Core\TweenManager.cs:1023:		public static bool TogglePause(Tween t)
+decompiled\AssetRipper_export_20260808_013212\Scripts\DOTween\DG\Tweening\TweenExtensions.cs:449:		public static void TogglePause(this Tween t)
+decompiled\AssetRipper_export_20260808_013212\Scripts\DOTween\DG\Tweening\TweenExtensions.cs:474:				TweenManager.TogglePause(t);
+decompiled\AssetRipper_export_20260808_013212\Scripts\UnityEngine.XRModule\UnityEngine\XR\CommonUsages.cs:9:		public static InputFeatureUsage<bool> primaryButton = new InputFeatureUsage<bool>("PrimaryButton");
+decompiled\AssetRipper_export_20260808_013212\Scripts\UnityEngine.XRModule\UnityEngine\XR\CommonUsages.cs:13:		public static InputFeatureUsage<bool> secondaryButton = new InputFeatureUsage<bool>("SecondaryButton");
+decompiled\AssetRipper_export_20260808_013212\Scripts\UnityEngine.XRModule\UnityEngine\XR\CommonUsages.cs:17:		public static InputFeatureUsage<bool> gripButton = new InputFeatureUsage<bool>("GripButton");
+decompiled\AssetRipper_export_20260808_013212\Scripts\UnityEngine.XRModule\UnityEngine\XR\CommonUsages.cs:19:		public static InputFeatureUsage<bool> triggerButton = new InputFeatureUsage<bool>("TriggerButton");
+decompiled\AssetRipper_export_20260808_013212\Scripts\UnityEngine.XRModule\UnityEngine\XR\CommonUsages.cs:21:		public static InputFeatureUsage<bool> menuButton = new InputFeatureUsage<bool>("MenuButton");
+decompiled\AssetRipper_export_20260808_013212\Scripts\DOTween\DG\Tweening\Core\Enums\OperationType.cs:16:		TogglePause = 11,
+decompiled\AssetRipper_export_20260808_013212\Scripts\DOTween\DG\Tweening\ShortcutExtensions.cs:1188:		public static int DOTogglePause(this Component target)
+decompiled\AssetRipper_export_20260808_013212\Scripts\DOTween\DG\Tweening\ShortcutExtensions.cs:1190:			return DOTween.TogglePause(target);
+decompiled\AssetRipper_export_20260808_013212\Scripts\DOTween\DG\Tweening\ShortcutExtensions.cs:1193:		public static int DOTogglePause(this Material target)
+decompiled\AssetRipper_export_20260808_013212\Scripts\DOTween\DG\Tweening\ShortcutExtensions.cs:1195:			return DOTween.TogglePause(target);
+decompiled\AssetRipper_export_20260808_013212\Scripts\Unity.VisualScripting.Core\Unity\VisualScripting\UnityOnToggleValueChangedMessageListener.cs:7:	public sealed class UnityOnToggleValueChangedMessageListener : MessageListener
+decompiled\AssetRipper_export_20260808_013212\Scripts\Unity.VisualScripting.Core\Unity\VisualScripting\UnityOnToggleValueChangedMessageListener.cs:11:			GetComponent<Toggle>()?.onValueChanged?.AddListener(delegate(bool value)
+decompiled\AssetRipper_export_20260808_013212\Scripts\Unity.VisualScripting.Core\Unity\VisualScripting\UnityOnToggleValueChangedMessageListener.cs:13:				EventBus.Trigger("OnToggleValueChanged", base.gameObject, value);
+decompiled\AssetRipper_export_20260808_013212\Scripts\Unity.VisualScripting.Core\Unity\VisualScripting\UnityOnSliderValueChangedMessageListener.cs:7:	public sealed class UnityOnSliderValueChangedMessageListener : MessageListener
+decompiled\AssetRipper_export_20260808_013212\Scripts\Unity.VisualScripting.Core\Unity\VisualScripting\UnityOnSliderValueChangedMessageListener.cs:11:			GetComponent<Slider>()?.onValueChanged?.AddListener(delegate(float value)
+decompiled\AssetRipper_export_20260808_013212\Scripts\Unity.VisualScripting.Core\Unity\VisualScripting\UnityOnSliderValueChangedMessageListener.cs:13:				EventBus.Trigger("OnSliderValueChanged", base.gameObject, value);
+decompiled\AssetRipper_export_20260808_013212\Scripts\Unity.VisualScripting.Core\Unity\VisualScripting\UnityOnScrollRectValueChangedMessageListener.cs:7:	public sealed class UnityOnScrollRectValueChangedMessageListener : MessageListener
+decompiled\AssetRipper_export_20260808_013212\Scripts\Unity.VisualScripting.Core\Unity\VisualScripting\UnityOnScrollRectValueChangedMessageListener.cs:11:			GetComponent<ScrollRect>()?.onValueChanged?.AddListener(delegate(Vector2 value)
+decompiled\AssetRipper_export_20260808_013212\Scripts\Unity.VisualScripting.Core\Unity\VisualScripting\UnityOnScrollRectValueChangedMessageListener.cs:13:				EventBus.Trigger("OnScrollRectValueChanged", base.gameObject, value);
+decompiled\AssetRipper_export_20260808_013212\Scripts\Unity.VisualScripting.Core\Unity\VisualScripting\UnityOnScrollbarValueChangedMessageListener.cs:7:	public sealed class UnityOnScrollbarValueChangedMessageListener : MessageListener
+decompiled\AssetRipper_export_20260808_013212\Scripts\Unity.VisualScripting.Core\Unity\VisualScripting\UnityOnScrollbarValueChangedMessageListener.cs:11:			GetComponent<Scrollbar>()?.onValueChanged?.AddListener(delegate(float value)
+decompiled\AssetRipper_export_20260808_013212\Scripts\Unity.VisualScripting.Core\Unity\VisualScripting\UnityOnScrollbarValueChangedMessageListener.cs:13:				EventBus.Trigger("OnScrollbarValueChanged", base.gameObject, value);
+decompiled\AssetRipper_export_20260808_013212\Scripts\Unity.VisualScripting.Core\Unity\VisualScripting\UnityOnMouseUpAsButtonMessageListener.cs:6:	public sealed class UnityOnMouseUpAsButtonMessageListener : MessageListener
+decompiled\AssetRipper_export_20260808_013212\Scripts\Unity.VisualScripting.Core\Unity\VisualScripting\UnityOnMouseUpAsButtonMessageListener.cs:8:		public void OnMouseUpAsButton()
+decompiled\AssetRipper_export_20260808_013212\Scripts\Unity.VisualScripting.Core\Unity\VisualScripting\UnityOnMouseUpAsButtonMessageListener.cs:10:			EventBus.Trigger("OnMouseUpAsButton", base.gameObject);
+decompiled\AssetRipper_export_20260808_013212\Scripts\Unity.VisualScripting.Core\Unity\VisualScripting\UnityOnButtonClickMessageListener.cs:7:	public sealed class UnityOnButtonClickMessageListener : MessageListener
+decompiled\AssetRipper_export_20260808_013212\Scripts\Unity.VisualScripting.Core\Unity\VisualScripting\UnityOnButtonClickMessageListener.cs:11:			GetComponent<Button>()?.onClick?.AddListener(delegate
+decompiled\AssetRipper_export_20260808_013212\Scripts\Unity.VisualScripting.Core\Unity\VisualScripting\UnityOnButtonClickMessageListener.cs:13:				EventBus.Trigger("OnButtonClick", base.gameObject);
+decompiled\AssetRipper_export_20260808_013212\Scripts\Unity.VisualScripting.Core\Unity\VisualScripting\UnityMessageListener.cs:9:	[Obsolete("UnityMessageListener is deprecated and has been replaced by separate message listeners for each event, eg. UnityOnCollisionEnterMessageListener or UnityOnButtonClickMessageListener.")]
+decompiled\AssetRipper_export_20260808_013212\Scripts\Unity.VisualScripting.Core\Unity\VisualScripting\UnityMessageListener.cs:19:			GetComponent<Button>()?.onClick?.AddListener(delegate
+decompiled\AssetRipper_export_20260808_013212\Scripts\Unity.VisualScripting.Core\Unity\VisualScripting\UnityMessageListener.cs:21:				EventBus.Trigger("OnButtonClick", base.gameObject);
+decompiled\AssetRipper_export_20260808_013212\Scripts\Unity.VisualScripting.Core\Unity\VisualScripting\UnityMessageListener.cs:23:			GetComponent<Toggle>()?.onValueChanged?.AddListener(delegate(bool value)
+decompiled\AssetRipper_export_20260808_013212\Scripts\Unity.VisualScripting.Core\Unity\VisualScripting\UnityMessageListener.cs:25:				EventBus.Trigger("OnToggleValueChanged", base.gameObject, value);
+decompiled\AssetRipper_export_20260808_013212\Scripts\Unity.VisualScripting.Core\Unity\VisualScripting\UnityMessageListener.cs:27:			GetComponent<Slider>()?.onValueChanged?.AddListener(delegate(float value)
+decompiled\AssetRipper_export_20260808_013212\Scripts\Unity.VisualScripting.Core\Unity\VisualScripting\UnityMessageListener.cs:29:				EventBus.Trigger("OnSliderValueChanged", base.gameObject, value);
+decompiled\AssetRipper_export_20260808_013212\Scripts\Unity.VisualScripting.Core\Unity\VisualScripting\UnityMessageListener.cs:31:			GetComponent<Scrollbar>()?.onValueChanged?.AddListener(delegate(float value)
+decompiled\AssetRipper_export_20260808_013212\Scripts\Unity.VisualScripting.Core\Unity\VisualScripting\UnityMessageListener.cs:33:				EventBus.Trigger("OnScrollbarValueChanged", base.gameObject, value);
+decompiled\AssetRipper_export_20260808_013212\Scripts\Unity.VisualScripting.Core\Unity\VisualScripting\UnityMessageListener.cs:47:			GetComponent<ScrollRect>()?.onValueChanged?.AddListener(delegate(Vector2 value)
+decompiled\AssetRipper_export_20260808_013212\Scripts\Unity.VisualScripting.Core\Unity\VisualScripting\UnityMessageListener.cs:49:				EventBus.Trigger("OnScrollRectValueChanged", base.gameObject, value);
+decompiled\AssetRipper_export_20260808_013212\Scripts\Unity.VisualScripting.Core\Unity\VisualScripting\UnityMessageListener.cs:213:		public void OnMouseUpAsButton()
+decompiled\AssetRipper_export_20260808_013212\Scripts\Unity.VisualScripting.Core\Unity\VisualScripting\UnityMessageListener.cs:215:			EventBus.Trigger("OnMouseUpAsButton", base.gameObject);
+decompiled\AssetRipper_export_20260808_013212\Scripts\DemiLib\DG\DemiLib\ToggleColors.cs:3:	public enum ToggleColors
+decompiled\AssetRipper_export_20260808_013212\Scripts\DemiLib\DG\DemiLib\DeToggleColors.cs:7:	public class DeToggleColors
+decompiled\AssetRipper_export_20260808_013212\Scripts\DemiLib\DG\DemiLib\DeToggleColors.cs:61:		public ColorCombination GetColors(ToggleColors offType, ToggleColors onType)
+decompiled\AssetRipper_export_20260808_013212\Scripts\DemiLib\DG\DemiLib\DeToggleColors.cs:66:		public Color2 GetColor2(ToggleColors type)
+decompiled\AssetRipper_export_20260808_013212\Scripts\DemiLib\DG\DemiLib\DeToggleColors.cs:71:			case ToggleColors.DefaultOn:
+decompiled\AssetRipper_export_20260808_013212\Scripts\DemiLib\DG\DemiLib\DeToggleColors.cs:75:			case ToggleColors.DefaultOff:
+decompiled\AssetRipper_export_20260808_013212\Scripts\DemiLib\DG\DemiLib\DeToggleColors.cs:79:			case ToggleColors.Critical:
+decompiled\AssetRipper_export_20260808_013212\Scripts\DemiLib\DG\DemiLib\DeToggleColors.cs:83:			case ToggleColors.Yellow:
+decompiled\AssetRipper_export_20260808_013212\Scripts\DemiLib\DG\DemiLib\DeToggleColors.cs:87:			case ToggleColors.Orange:
+decompiled\AssetRipper_export_20260808_013212\Scripts\DemiLib\DG\DemiLib\DeToggleColors.cs:91:			case ToggleColors.Blue:
+decompiled\AssetRipper_export_20260808_013212\Scripts\DemiLib\DG\DemiLib\DeToggleColors.cs:95:			case ToggleColors.Cyan:
+decompiled\AssetRipper_export_20260808_013212\Scripts\DemiLib\DG\DemiLib\DeToggleColors.cs:99:			case ToggleColors.Purple:
+decompiled\AssetRipper_export_20260808_013212\Scripts\DemiLib\DG\DemiLib\DeInputUtils.cs:13:			if (Input.GetKeyDown(KeyCode.Alpha0) || Input.GetKeyDown(KeyCode.Keypad0))
+decompiled\AssetRipper_export_20260808_013212\Scripts\DemiLib\DG\DemiLib\DeInputUtils.cs:17:			if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Keypad1))
+decompiled\AssetRipper_export_20260808_013212\Scripts\DemiLib\DG\DemiLib\DeInputUtils.cs:21:			if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Keypad2))
+decompiled\AssetRipper_export_20260808_013212\Scripts\DemiLib\DG\DemiLib\DeInputUtils.cs:25:			if (Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Keypad3))
+decompiled\AssetRipper_export_20260808_013212\Scripts\DemiLib\DG\DemiLib\DeInputUtils.cs:29:			if (Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Keypad4))
+decompiled\AssetRipper_export_20260808_013212\Scripts\DemiLib\DG\DemiLib\DeInputUtils.cs:33:			if (Input.GetKeyDown(KeyCode.Alpha5) || Input.GetKeyDown(KeyCode.Keypad5))
+decompiled\AssetRipper_export_20260808_013212\Scripts\DemiLib\DG\DemiLib\DeInputUtils.cs:37:			if (Input.GetKeyDown(KeyCode.Alpha6) || Input.GetKeyDown(KeyCode.Keypad6))
+decompiled\AssetRipper_export_20260808_013212\Scripts\DemiLib\DG\DemiLib\DeInputUtils.cs:41:			if (Input.GetKeyDown(KeyCode.Alpha7) || Input.GetKeyDown(KeyCode.Keypad7))
+decompiled\AssetRipper_export_20260808_013212\Scripts\DemiLib\DG\DemiLib\DeInputUtils.cs:45:			if (Input.GetKeyDown(KeyCode.Alpha8) || Input.GetKeyDown(KeyCode.Keypad8))
+decompiled\AssetRipper_export_20260808_013212\Scripts\DemiLib\DG\DemiLib\DeInputUtils.cs:49:			if (Input.GetKeyDown(KeyCode.Alpha9) || Input.GetKeyDown(KeyCode.Keypad9))
+decompiled\AssetRipper_export_20260808_013212\Scripts\DemiLib\DG\DemiLib\DeColorPalette.cs:16:		public DeToggleColors toggle = new DeToggleColors();
+decompiled\AssetRipper_export_20260808_013212\Scripts\Unity.VisualScripting.Core\Unity\VisualScripting\MouseButton.cs:3:	public enum MouseButton
+decompiled\AssetRipper_export_20260808_013212\Scripts\Unity.VisualScripting.Core\Unity\VisualScripting\InspectorToggleLeftAttribute.cs:6:	public sealed class InspectorToggleLeftAttribute : Attribute
+decompiled\AssetRipper_export_20260808_013212\Scripts\Unity.VisualScripting.Core\Unity\VisualScripting\EventHooks.cs:105:		public const string OnMouseUpAsButton = "OnMouseUpAsButton";
+decompiled\AssetRipper_export_20260808_013212\Scripts\Unity.VisualScripting.Core\Unity\VisualScripting\EventHooks.cs:129:		public const string OnButtonClick = "OnButtonClick";
+decompiled\AssetRipper_export_20260808_013212\Scripts\Unity.VisualScripting.Core\Unity\VisualScripting\EventHooks.cs:131:		public const string OnToggleValueChanged = "OnToggleValueChanged";
+decompiled\AssetRipper_export_20260808_013212\Scripts\Unity.VisualScripting.Core\Unity\VisualScripting\EventHooks.cs:133:		public const string OnSliderValueChanged = "OnSliderValueChanged";
+decompiled\AssetRipper_export_20260808_013212\Scripts\Unity.VisualScripting.Core\Unity\VisualScripting\EventHooks.cs:135:		public const string OnScrollbarValueChanged = "OnScrollbarValueChanged";
+decompiled\AssetRipper_export_20260808_013212\Scripts\Unity.VisualScripting.Core\Unity\VisualScripting\EventHooks.cs:143:		public const string OnScrollRectValueChanged = "OnScrollRectValueChanged";
+decompiled\AssetRipper_export_20260808_013212\Scripts\com.rlabrecque.steamworks.net\Steamworks\SteamHTMLSurface.cs:86:		public static void MouseUp(HHTMLBrowser unBrowserHandle, EHTMLMouseButton eMouseButton)
+decompiled\AssetRipper_export_20260808_013212\Scripts\com.rlabrecque.steamworks.net\Steamworks\SteamHTMLSurface.cs:89:			NativeMethods.ISteamHTMLSurface_MouseUp(CSteamAPIContext.GetSteamHTMLSurface(), unBrowserHandle, eMouseButton);
+decompiled\AssetRipper_export_20260808_013212\Scripts\com.rlabrecque.steamworks.net\Steamworks\SteamHTMLSurface.cs:92:		public static void MouseDown(HHTMLBrowser unBrowserHandle, EHTMLMouseButton eMouseButton)
+decompiled\AssetRipper_export_20260808_013212\Scripts\com.rlabrecque.steamworks.net\Steamworks\SteamHTMLSurface.cs:95:			NativeMethods.ISteamHTMLSurface_MouseDown(CSteamAPIContext.GetSteamHTMLSurface(), unBrowserHandle, eMouseButton);
+decompiled\AssetRipper_export_20260808_013212\Scripts\com.rlabrecque.steamworks.net\Steamworks\SteamHTMLSurface.cs:98:		public stat
