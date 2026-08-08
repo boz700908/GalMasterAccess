@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Reflection;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -79,9 +80,9 @@ namespace GalMasterAccess
             SelectionAction selection = center != null ? center.selectionAction : null;
             if (selection != null && selection.IsOpen)
             {
-                foreach (Selectable selectable in selection.GetComponentsInChildren<Selectable>(true))
+                foreach (Button button in GetSelectionButtons(selection))
                 {
-                    NavigationHelper.EnsureSelectable(selectable, "choice");
+                    NavigationHelper.EnsureSelectable(button, "choice");
                 }
             }
         }
@@ -244,22 +245,14 @@ namespace GalMasterAccess
                 return;
             }
 
-            List<Selectable> controls = new List<Selectable>();
-            foreach (Selectable selectable in selection.GetComponentsInChildren<Selectable>(true))
-            {
-                if (selectable.gameObject.activeInHierarchy && selectable.interactable)
-                {
-                    controls.Add(selectable);
-                }
-            }
-
+            List<Button> controls = GetSelectionButtons(selection);
             if (controls.Count == 0)
             {
                 return;
             }
 
             int current = controls.IndexOf(EventSystem.current.currentSelectedGameObject != null
-                ? EventSystem.current.currentSelectedGameObject.GetComponent<Selectable>()
+                ? EventSystem.current.currentSelectedGameObject.GetComponent<Button>()
                 : null);
             if (current < 0)
             {
@@ -284,9 +277,25 @@ namespace GalMasterAccess
             }
             else if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
             {
-                Button button = controls[current] as Button;
-                if (button != null) UiInteraction.Click(button.gameObject);
+                UiInteraction.Click(controls[current].gameObject);
             }
+        }
+
+        private static List<Button> GetSelectionButtons(SelectionAction selection)
+        {
+            List<Button> buttons = new List<Button>();
+            if (selection == null) return buttons;
+            FieldInfo field = selection.GetType().GetField("optionButtons", BindingFlags.Instance | BindingFlags.NonPublic);
+            Button[] optionButtons = field != null ? field.GetValue(selection) as Button[] : null;
+            if (optionButtons == null) return buttons;
+            foreach (Button button in optionButtons)
+            {
+                if (button != null && button.gameObject.activeInHierarchy && button.interactable)
+                {
+                    buttons.Add(button);
+                }
+            }
+            return buttons;
         }
 
         private void Reset()
